@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-card border-t border-border py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
           <nav>
             <h3 className="font-bold mb-4">Navigation</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
@@ -68,7 +68,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://github.com/nikiteshb"
+                  href="https://github.com/hazelwusy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:rounded px-1"
@@ -80,23 +80,13 @@ export default function Footer() {
             </ul>
           </nav>
           <div>
-            <h3 className="font-bold mb-4">Skills</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>React & JavaScript</li>
-              <li>SASS & Tailwind CSS</li>
-              <li>Web Accessibility</li>
-              <li>Design to Code</li>
-            </ul>
-          </div>
-          <div>
             <h3 className="font-bold mb-4">Location</h3>
             <p className="text-sm text-muted-foreground">Chapel Hill, NC</p>
           </div>
         </div>
 
-        <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+        <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
           <p>&copy; 2026 Shuyan (Hazel) Wu</p>
-          <p>Crafted with React & Tailwind CSS</p>
         </div>
       </div>
     </footer>

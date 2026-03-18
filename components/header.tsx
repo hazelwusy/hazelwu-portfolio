@@ -17,7 +17,6 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
   const navLinks = [
     { href: "#about", label: "About" },
     { href: "#skills", label: "Skills" },
-    { href: "#education", label: "Education" },
     { href: "#experience", label: "Experience" },
     { href: "#contact", label: "Contact" },
   ]
@@ -64,7 +63,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
-              {navLinks.slice(0, 3).map((link) => (
+              {navLinks.slice(0, 2).map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -101,7 +100,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                 )}
               </div>
 
-              {navLinks.slice(3).map((link) => (
+              {navLinks.slice(2).map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -137,7 +136,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <nav className="md:hidden pb-4 flex flex-col gap-2" aria-label="Mobile navigation">
-              {navLinks.slice(0, 3).map((link) => (
+              {navLinks.slice(0, 2).map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -159,7 +158,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                   {link.label}
                 </Link>
               ))}
-              {navLinks.slice(3).map((link) => (
+              {navLinks.slice(2).map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
