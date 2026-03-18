@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
+import { CaseStudyModal } from "@/components/case-study-modal"
 
 const tags = ["Product Strategy", "AI/MCP Architecture", "Knowledge Management", "Financial Modeling"]
 
@@ -21,6 +23,39 @@ const metrics = [
 ]
 
 export default function WellCasePage() {
+  const [activeModal, setActiveModal] = useState<string | null>(null)
+
+  const modals = {
+    roi: {
+      title: "Strategic Procurement & TCO Modeling",
+      narrative:
+        "Engineered a Total Cost of Ownership (TCO) model comparing legacy CRM systems against agile, AI-native documentation platforms. Proved that a lightweight search architecture would bypass months of DevOps dependency.",
+      points: [
+        "Time-to-Value (TTV): Immediate vs. Months",
+        "Projected First-Year ROI: 10x-20x Return",
+        "Strategic Impact: Projected a conservative 10% deflection in Tier-1 support tickets, reclaiming high-value clinical bandwidth without incurring technical debt.",
+      ],
+    },
+    mcp: {
+      title: "LLM-Agnostic Context Routing Architecture",
+      narrative:
+        "Authored the technical PRD establishing a secure Model Context Protocol (MCP). Architected a dual-track system to enforce strict data scoping constraints.",
+      points: [
+        "Track A (Internal): Admin-level context server enabling clinical operations teams to automate QA.",
+        "Track B (External): Consumer-facing, HIPAA-compliant gateway for secure biometric data retrieval.",
+      ],
+    },
+    market: {
+      title: "Competitive Moat & White Space Analysis",
+      narrative:
+        "Conducted deep-dive technical evaluations of competitors in the digital health space. Identified that incumbents rely heavily on brittle, rule-based logic.",
+      points: [
+        "Strategic Decision: Validated the roadmap focus on a proprietary, biometric-driven personalization engine.",
+        "Positioning Shift: Ensured the product operates as a proactive clinical companion rather than a generic conversational search bar.",
+      ],
+    },
+  } as const
+
   return (
     <main className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -132,9 +167,15 @@ export default function WellCasePage() {
           <h2 className="text-2xl font-bold text-foreground mb-6">Portfolio Artifacts</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {artifacts.map((artifact) => (
-              <div
+              <button
                 key={artifact.title}
-                className="p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors"
+                type="button"
+                onClick={() => {
+                  if (artifact.title === "MCP Server PRD") setActiveModal("mcp")
+                  if (artifact.title === "Platform Evaluation") setActiveModal("market")
+                  if (artifact.title === "Financial Impact Model") setActiveModal("roi")
+                }}
+                className="p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors text-left"
               >
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h3 className="font-semibold text-foreground">{artifact.title}</h3>
@@ -143,7 +184,7 @@ export default function WellCasePage() {
                   )}
                 </div>
                 <p className="text-sm text-muted-foreground">{artifact.description}</p>
-              </div>
+              </button>
             ))}
           </div>
         </motion.section>
@@ -198,6 +239,30 @@ export default function WellCasePage() {
           </Link>
         </motion.div>
       </div>
+
+      <CaseStudyModal
+        open={activeModal === "roi"}
+        onOpenChange={(open) => setActiveModal(open ? "roi" : null)}
+        title={modals.roi.title}
+        narrative={modals.roi.narrative}
+        points={modals.roi.points}
+      />
+
+      <CaseStudyModal
+        open={activeModal === "mcp"}
+        onOpenChange={(open) => setActiveModal(open ? "mcp" : null)}
+        title={modals.mcp.title}
+        narrative={modals.mcp.narrative}
+        points={modals.mcp.points}
+      />
+
+      <CaseStudyModal
+        open={activeModal === "market"}
+        onOpenChange={(open) => setActiveModal(open ? "market" : null)}
+        title={modals.market.title}
+        narrative={modals.market.narrative}
+        points={modals.market.points}
+      />
     </main>
   )
 }

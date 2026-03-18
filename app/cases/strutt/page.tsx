@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
+import { CaseStudyModal } from "@/components/case-study-modal"
 
 const tags = ["User Research", "JTBD Framework", "Pricing Strategy", "Growth Analytics"]
 
@@ -22,6 +24,41 @@ const metrics = [
 ]
 
 export default function StruttCasePage() {
+  const [activeModal, setActiveModal] = useState<string | null>(null)
+
+  const modals = {
+    research: {
+      title: "The Qualitative-to-Quantitative GTM Engine",
+      narrative:
+        "Scaled an end-to-end research framework to extract actionable willingness-to-pay (WTP) metrics from emotional user narratives.",
+      points: [
+        "Phase 1: Strategic Screening of friction points.",
+        "Phase 2: Contextual deep-dive into psychological burden.",
+        "Phase 3: Concept introduction and Value Anchoring (WTP).",
+      ],
+    },
+    personas: {
+      title: "Psychological Persona Engineering",
+      narrative:
+        "Shifted product development focus from solving purely physical limitations to addressing the hidden burden of Cognitive Load.",
+      points: [
+        "The Independence Restorers: Driven by the elimination of caregiver dependency.",
+        "The Cognitive Load Offloaders: Driven by relieving the mental calculus of navigation.",
+        "The Lifestyle Evangelists: Driven by rejecting medical stigma; exhibiting high WTP elasticity.",
+      ],
+    },
+    pricing: {
+      title: "The 'Safety vs. Joy' Willingness-to-Pay (WTP) Paradigm",
+      narrative:
+        "Cross-analyzed qualitative sentiment with pricing expectations. Discovered a crucial market inflection point that redefined the Go-To-Market value proposition.",
+      points: [
+        "Baseline Driver: 'Safety' acts as the non-negotiable baseline where users remain highly price-sensitive.",
+        "Premium Driver: Premium willingness-to-pay scales exponentially with 'Joy'—the restoration of social freedom.",
+        "Business Outcome: Dictated the premium pricing tier and pivoted the GTM narrative from 'medical necessity' to 'lifestyle empowerment'.",
+      ],
+    },
+  } as const
+
   return (
     <main className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -100,26 +137,38 @@ export default function StruttCasePage() {
           <h2 className="text-2xl font-bold text-foreground mb-6">What I Did</h2>
           
           <div className="space-y-8">
-            <div>
+            <button
+              type="button"
+              onClick={() => setActiveModal("research")}
+              className="w-full text-left"
+            >
               <h3 className="text-lg font-semibold text-foreground mb-3">Designing the research methodology</h3>
               <p className="text-muted-foreground leading-relaxed">
                 {"I authored the complete user research SOP — a multi-stage qualitative framework covering screening, discovery interviews, usability evaluation, and pricing research. The methodology was designed with sensitivity at its core: these are users sharing vulnerable, deeply personal experiences. I built a structured-but-flexible conversation guide anchored around three core questions: What is the user's current situation? What are their ideal expectations? And where does our product design fit or fail? I also created a user profile template capturing mobility specifics, media behavior, purchase patterns, and community advocacy potential."}
               </p>
-            </div>
+            </button>
 
-            <div>
+            <button
+              type="button"
+              onClick={() => setActiveModal("personas")}
+              className="w-full text-left"
+            >
               <h3 className="text-lg font-semibold text-foreground mb-3">{"The 'Safety to Joy' insight"}</h3>
               <p className="text-muted-foreground leading-relaxed">
                 {"The biggest finding came from synthesizing 200+ interviews using a Jobs-to-Be-Done framework. I organized all user needs into four core 'jobs': eliminate daily friction, expand physical and psychological boundaries, provide holistic safety, and express personal identity. About 60% of users anchored on safety as non-negotiable, while 40% were primarily motivated by joy, independence, and self-expression. But once safety felt certain, even the safety-first group wanted to talk about freedom. The product wasn't competing with other wheelchairs — it was competing with the feeling of being stuck."}
               </p>
-            </div>
+            </button>
 
-            <div>
+            <button
+              type="button"
+              onClick={() => setActiveModal("pricing")}
+              className="w-full text-left"
+            >
               <h3 className="text-lg font-semibold text-foreground mb-3">Persona development & pricing</h3>
               <p className="text-muted-foreground leading-relaxed">
                 {"I distilled the research into 5 distinct personas — from 'Independence Rebuilders' to 'Lifestyle Tech Evangelists' — each with specific acquisition channel and messaging recommendations. Willingness-to-pay analysis revealed that users anchored expectations to existing complex rehab technology prices, enabling a value-based pricing strategy built around 'dignity and unassisted mobility' rather than hardware specs."}
               </p>
-            </div>
+            </button>
 
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-3">Growth analytics</h3>
@@ -147,9 +196,15 @@ export default function StruttCasePage() {
           <h2 className="text-2xl font-bold text-foreground mb-6">Portfolio Artifacts</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {artifacts.map((artifact) => (
-              <div
+              <button
                 key={artifact.title}
-                className="p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors"
+                type="button"
+                onClick={() => {
+                  if (artifact.title === "User Research SOP") setActiveModal("research")
+                  if (artifact.title === "Want & Need Analysis") setActiveModal("personas")
+                  if (artifact.title === "5 Personas") setActiveModal("pricing")
+                }}
+                className="p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors text-left"
               >
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h3 className="font-semibold text-foreground">{artifact.title}</h3>
@@ -158,7 +213,7 @@ export default function StruttCasePage() {
                   )}
                 </div>
                 <p className="text-sm text-muted-foreground">{artifact.description}</p>
-              </div>
+              </button>
             ))}
           </div>
         </motion.section>
@@ -213,6 +268,30 @@ export default function StruttCasePage() {
           </Link>
         </motion.div>
       </div>
+
+      <CaseStudyModal
+        open={activeModal === "research"}
+        onOpenChange={(open) => setActiveModal(open ? "research" : null)}
+        title={modals.research.title}
+        narrative={modals.research.narrative}
+        points={modals.research.points}
+      />
+
+      <CaseStudyModal
+        open={activeModal === "personas"}
+        onOpenChange={(open) => setActiveModal(open ? "personas" : null)}
+        title={modals.personas.title}
+        narrative={modals.personas.narrative}
+        points={modals.personas.points}
+      />
+
+      <CaseStudyModal
+        open={activeModal === "pricing"}
+        onOpenChange={(open) => setActiveModal(open ? "pricing" : null)}
+        title={modals.pricing.title}
+        narrative={modals.pricing.narrative}
+        points={modals.pricing.points}
+      />
     </main>
   )
 }
