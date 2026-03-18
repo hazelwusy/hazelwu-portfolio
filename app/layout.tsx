@@ -9,7 +9,7 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Hazel Wu Personal Portfolio",
+  title: "Shuyan (Hazel) Wu | Health Tech · Product · Strategy",
   description:
     "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech — product, strategy, analytics, and operations.",
   keywords: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   generator: "v0.app",
   openGraph: {
-    title: "Hazel Wu Personal Portfolio",
+    title: "Shuyan (Hazel) Wu | Health Tech · Product · Strategy",
     description:
       "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech.",
     type: "website",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hazel Wu Personal Portfolio",
+    title: "Shuyan (Hazel) Wu | Health Tech · Product · Strategy",
     description:
       "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech.",
   },

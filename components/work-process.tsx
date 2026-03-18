@@ -24,7 +24,7 @@ export default function WorkProcess() {
       title: "Strategic Interventions for Health Equity",
       subtitle: "Corewell Health · Strategy & Operations",
       summary: "Co-designed a community health literacy program and defined population health KPIs correlating digital engagement with clinical outcomes.",
-      href: "/cases/corewellhealth",
+      href: "/cases/corewell",
       accentColor: "bg-[#6b8f5c]",
     },
   ]

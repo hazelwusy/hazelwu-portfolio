@@ -92,7 +92,7 @@ export default function Hero() {
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </motion.a>
             <motion.a
-              href="/shuyan_hazel_wu_ui_developer_cv.pdf"
+              href="/ShuyanWu_Resume_PM_0218.pdf"
               download
               className="inline-flex items-center justify-center gap-2 px-8 py-3 border-2 border-primary/50 rounded-lg font-medium hover:bg-primary/10 hover:border-primary transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               whileHover={{ scale: 1.05, y: -2 }}
