@@ -9,37 +9,34 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Shuyan Hazel Wu | Sr. UI Developer & React Specialist | Portfolio",
+  title: "Hazel Wu Personal Portfolio",
   description:
-    "Sr. Software Engineer with 9.5+ years of experience in React, JavaScript, SASS, and design-to-code conversion. Expert in WCAG AA accessibility standards and pixel-perfect UI development.",
+    "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech — product, strategy, analytics, and operations.",
   keywords: [
-    "UI Developer",
-    "React Developer",
-    "Frontend Engineer",
-    "JavaScript",
-    "SASS",
-    "Web Design",
-    "Accessibility",
-    "WCAG AA",
+    "Health Tech",
+    "Product Management",
+    "Strategy",
+    "Analytics",
+    "Operations",
+    "UNC Chapel Hill",
     "Shuyan Wu",
     "Hazel Wu",
-    "Shuyan Hazel Wu",
-    "UI developer portfolio"
+    "Morehead-Cain Scholar"
   ],
   generator: "v0.app",
   openGraph: {
-    title: "Shuyan Hazel Wu | Sr. UI Developer & React Specialist",
+    title: "Hazel Wu Personal Portfolio",
     description:
-      "Sr. Software Engineer with 9.5+ years of experience in React, JavaScript, SASS, and design-to-code conversion.",
+      "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech.",
     type: "website",
     locale: "en_US",
     url: "https://hazelwu.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shuyan Hazel Wu | Sr. UI Developer & React Specialist",
+    title: "Hazel Wu Personal Portfolio",
     description:
-      "Sr. Software Engineer with 9.5+ years of experience in React, JavaScript, SASS, and design-to-code conversion.",
+      "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech.",
   },
   alternates: {
     canonical: "https://hazelwu.com",
@@ -89,13 +86,16 @@ export default function RootLayout({
               "@type": "Person",
               name: "Shuyan Hazel Wu",
               url: "https://hazelwu.com",
-              jobTitle: "Sr. Software Engineer",
-              email: "hazel@example.com",
+              jobTitle: "Health Tech Professional",
+              email: "hazelwu@ad.unc.edu",
               address: {
                 "@type": "PostalAddress",
+                addressLocality: "Chapel Hill",
+                addressRegion: "NC",
                 addressCountry: "US",
               },
-              knowsAbout: ["React.js", "JavaScript", "SASS", "HTML5", "CSS3", "Web Accessibility", "WCAG AA"],
+              alumniOf: "University of North Carolina at Chapel Hill",
+              knowsAbout: ["Health Tech", "Product Management", "Strategy", "Analytics", "Health Policy"],
             }),
           }}
         />
