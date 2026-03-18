@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     "Digital Health",
     "Information Science",
     "Product Management",
-    "Telehealth Strategy",
-    "System Mapping",
+    "Telehealth",
+    "Health Tech",
     "Health Policy and Management",
     "UNC Chapel Hill",
     "Morehead-Cain Scholar",
@@ -30,19 +30,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Hazel Wu | Health Informatics & Digital Health Portfolio",
     description:
-      "Portfolio of Hazel Wu, specializing in Health Informatics, Information Science, and Health Policy. Experienced in digital health strategy, product management, and system mapping.",
+      "Portfolio of Hazel Wu, specializing in Health Informatics, Information Science, and Health Policy. Experienced in digital health strategy and product management.",
     type: "website",
     locale: "en_US",
-    url: "https://hazelwu.com",
+    url: "https://hazelwu.space",
   },
   twitter: {
     card: "summary_large_image",
     title: "Hazel Wu | Health Informatics & Digital Health Portfolio",
     description:
-      "Portfolio of Hazel Wu, specializing in Health Informatics, Information Science, and Health Policy. Experienced in digital health strategy, product management, and system mapping.",
+      "Portfolio of Hazel Wu, specializing in Health Informatics, Information Science, and Health Policy.",
   },
   alternates: {
-    canonical: "https://hazelwu.com",
+    canonical: "https://hazelwu.space",
   },
   robots: {
     index: true,
@@ -87,18 +87,23 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Shuyan Hazel Wu",
-              url: "https://hazelwu.com",
-              jobTitle: "Health Tech Professional",
-              email: "hazelwu@ad.unc.edu",
+              name: "Hazel Shuyan Wu",
+              url: "https://hazelwu.space",
+              jobTitle: "Health Informatics & Product Strategy",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Chapel Hill",
                 addressRegion: "NC",
                 addressCountry: "US",
               },
-              alumniOf: "University of North Carolina at Chapel Hill",
-              knowsAbout: ["Health Tech", "Product Management", "Strategy", "Analytics", "Health Policy"],
+              knowsAbout: [
+                "Health Informatics", 
+                "Digital Health", 
+                "Information Science", 
+                "Product Management", 
+                "System Mapping", 
+                "Health Policy"
+              ],
             }),
           }}
         />
