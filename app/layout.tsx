@@ -9,34 +9,37 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Shuyan (Hazel) Wu | Health Tech · Product · Strategy",
+  title: "Hazel Wu | Health Informatics & Digital Health Portfolio",
   description:
-    "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech — product, strategy, analytics, and operations.",
+    "Portfolio of Hazel Wu, specializing in Health Informatics, Information Science, and Health Policy. Experienced in digital health strategy, product management, and system mapping, dedicated to exploring the intersection of healthcare and technology.",
   keywords: [
-    "Health Tech",
-    "Product Management",
-    "Strategy",
-    "Analytics",
-    "Operations",
-    "UNC Chapel Hill",
-    "Shuyan Wu",
     "Hazel Wu",
-    "Morehead-Cain Scholar"
+    "Shuyan Wu",
+    "Health Informatics",
+    "Digital Health",
+    "Information Science",
+    "Product Management",
+    "Telehealth Strategy",
+    "System Mapping",
+    "Health Policy and Management",
+    "UNC Chapel Hill",
+    "Morehead-Cain Scholar",
+    "Healthcare Tech Portfolio"
   ],
   generator: "v0.app",
   openGraph: {
-    title: "Shuyan (Hazel) Wu | Health Tech · Product · Strategy",
+    title: "Hazel Wu | Health Informatics & Digital Health Portfolio",
     description:
-      "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech.",
+      "Portfolio of Hazel Wu, specializing in Health Informatics, Information Science, and Health Policy. Experienced in digital health strategy, product management, and system mapping.",
     type: "website",
     locale: "en_US",
     url: "https://hazelwu.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shuyan (Hazel) Wu | Health Tech · Product · Strategy",
+    title: "Hazel Wu | Health Informatics & Digital Health Portfolio",
     description:
-      "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech.",
+      "Portfolio of Hazel Wu, specializing in Health Informatics, Information Science, and Health Policy. Experienced in digital health strategy, product management, and system mapping.",
   },
   alternates: {
     canonical: "https://hazelwu.com",
