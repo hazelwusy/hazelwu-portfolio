@@ -2,7 +2,6 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css"
 import Script from "next/script"
 
@@ -10,37 +9,40 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Hazel Wu Personal Portfolio",
+  title: "Hazel Wu | Health Informatics & Digital Health Portfolio",
   description:
-    "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech — product, strategy, analytics, and operations.",
+    "Portfolio of Hazel Wu, specializing in Health Informatics, Information Science, and Health Policy. Experienced in digital health strategy, product management, and system mapping, dedicated to exploring the intersection of healthcare and technology.",
   keywords: [
-    "Health Tech",
-    "Product Management",
-    "Strategy",
-    "Analytics",
-    "Operations",
-    "UNC Chapel Hill",
-    "Shuyan Wu",
     "Hazel Wu",
-    "Morehead-Cain Scholar"
+    "Shuyan Wu",
+    "Health Informatics",
+    "Digital Health",
+    "Information Science",
+    "Product Management",
+    "Telehealth",
+    "Health Tech",
+    "Health Policy and Management",
+    "UNC Chapel Hill",
+    "Morehead-Cain Scholar",
+    "Healthcare Tech Portfolio"
   ],
   generator: "v0.app",
   openGraph: {
-    title: "Hazel Wu Personal Portfolio",
+    title: "Hazel Wu | Health Informatics & Digital Health Portfolio",
     description:
-      "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech.",
+      "Portfolio of Hazel Wu, specializing in Health Informatics, Information Science, and Health Policy. Experienced in digital health strategy and product management.",
     type: "website",
     locale: "en_US",
-    url: "https://hazelwu.com",
+    url: "https://hazelwu.space",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hazel Wu Personal Portfolio",
+    title: "Hazel Wu | Health Informatics & Digital Health Portfolio",
     description:
-      "Recent UNC-Chapel Hill graduate in Health Policy & Management and Information Science. Looking for entry-level roles in health tech.",
+      "Portfolio of Hazel Wu, specializing in Health Informatics, Information Science, and Health Policy.",
   },
   alternates: {
-    canonical: "https://hazelwu.com",
+    canonical: "https://hazelwu.space",
   },
   robots: {
     index: true,
@@ -85,18 +87,23 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Shuyan Hazel Wu",
-              url: "https://hazelwu.com",
-              jobTitle: "Health Tech Professional",
-              email: "hazelwu@ad.unc.edu",
+              name: "Hazel Shuyan Wu",
+              url: "https://hazelwu.space",
+              jobTitle: "Health Informatics & Product Strategy",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Chapel Hill",
                 addressRegion: "NC",
                 addressCountry: "US",
               },
-              alumniOf: "University of North Carolina at Chapel Hill",
-              knowsAbout: ["Health Tech", "Product Management", "Strategy", "Analytics", "Health Policy"],
+              knowsAbout: [
+                "Health Informatics", 
+                "Digital Health", 
+                "Information Science", 
+                "Product Management", 
+                "System Mapping", 
+                "Health Policy"
+              ],
             }),
           }}
         />
@@ -104,7 +111,6 @@ export default function RootLayout({
       <body className={`font-sans antialiased`}>
         {children}
         <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   )
