@@ -15,7 +15,7 @@ export default function WorkProcess() {
     },
     {
       title: "Global GTM & User Empathy Mapping",
-      subtitle: "Strutt Inc. · GTM Strategy",
+      subtitle: "Strutt · GTM Strategy",
       summary: "Designed the end-to-end user research methodology and synthesized 200+ interviews into 5 actionable personas that reshaped the company's positioning.",
       href: "/cases/strutt",
       accentColor: "bg-[#c9a66b]",

@@ -7,7 +7,7 @@ export default function Experience() {
   const experiences = [
     {
       title: "Product Management Intern",
-      company: "Well Co.",
+      company: "Well",
       period: "Sep 2025 – Present",
       location: "Chapel Hill, NC",
       description: "AI workflow product requirements, knowledge management platform evaluation, agile execution across clinical and engineering teams.",
@@ -22,7 +22,7 @@ export default function Experience() {
     {
       title: "Research and Project Coordination Intern",
       company: "Brookings Institution",
-      period: "June 2025 – Aug 2025",
+      period: "Jun 2025 – Aug 2025",
       location: "Washington, D.C.",
       description: "End-to-end program operations for 6 Brookings research portfolios, centralized knowledge repository design, and driver-based budget modeling for multi-million-dollar programs.",
     },

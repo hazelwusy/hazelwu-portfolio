@@ -61,7 +61,7 @@ export default function Hero() {
             className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-balance leading-tight"
           >
             <span className="bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
-              Shuyan "Hazel" Wu
+              Shuyan (Hazel) Wu
             </span>
           </motion.h1>
 
