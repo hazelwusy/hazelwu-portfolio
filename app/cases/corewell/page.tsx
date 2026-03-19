@@ -5,12 +5,14 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import { CaseStudyModal } from "@/components/case-study-modal"
-import HealthLiteracyDashboard from "@/components/artifacts/corewell-health-literacy"
 
 const tags = ["Health Equity", "Population Health", "Community Research", "Intervention Design"]
 
 const artifacts = [
-  { title: "Health Literacy Dashboard", description: "Problem reframing, research process, solution design, and evaluation framework", redacted: false },
+  { title: "Final Proposal", description: "Executive presentation delivered to health system leadership", redacted: false },
+  { title: "Evaluation Framework", description: "KPIs linking digital engagement to clinical outcomes", redacted: false },
+  { title: "Partnership Map", description: "6-organization stakeholder ecosystem", redacted: false },
+  { title: "Budget Model", description: "Per-event cost and scaling projections", redacted: false },
 ]
 
 const metrics = [
@@ -24,8 +26,37 @@ export default function CorewellCasePage() {
   const [activeModal, setActiveModal] = useState<string | null>(null)
 
   const modals = {
-    literacy: {
-      title: "Health Literacy Dashboard",
+    problem: {
+      title: "Diagnosing the Digital Divide via Systems Mapping",
+      narrative:
+        "Access to digital infrastructure is useless without baseline health literacy. Mapped the end-to-end patient journey for marginalized communities.",
+      points: [
+        "Systems Failure Identified: Pinpointed the exact drop-off node—the chasm between physical community trust and digital portal onboarding.",
+      ],
+      iframe: {
+        src: "https://embed.kumu.io/",
+        title: "Kumu Systems Map",
+      },
+    },
+    proposal: {
+      title: "The Health Academy: An O2O Service Blueprint",
+      narrative:
+        "Co-architected a hybrid Online-to-Offline (O2O) intervention strategy to systematically bridge the health literacy gap.",
+      points: [
+        "Frontstage (Physical): Trust-building community events to dismantle institutional intimidation.",
+        "The Bridge (Digital): Frictionless, guided onboarding for remote diagnostic hardware and patient portals.",
+        "Backstage (Sustained): Long-term virtual telemetry and curriculum to cement adoption.",
+      ],
+    },
+    metrics: {
+      title: "Population Health Telemetry & KPI Framework",
+      narrative:
+        "Developed a scalable evaluation dashboard separating behavioral engagement metrics from ultimate clinical outcomes to provide actionable executive levers.",
+      points: [
+        "Leading Indicators (Engagement): Telehealth session volume, virtual appointment frequency, and post-intervention literacy scores.",
+        "Lagging Indicators (Clinical): ER utilization rates and average hospital length of stay (LOS).",
+        "Disclaimer: Specific operational metrics abstracted to comply with civic collaboration NDAs.",
+      ],
     },
   } as const
 
