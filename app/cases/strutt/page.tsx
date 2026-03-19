@@ -5,15 +5,14 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import { CaseStudyModal } from "@/components/case-study-modal"
+import ResearchMethodology from "@/components/artifacts/strutt-research-methodology"
+import InsightDashboard from "@/components/artifacts/strutt-insight-dashboard"
 
 const tags = ["User Research", "JTBD Framework", "Pricing Strategy", "Growth Analytics"]
 
 const artifacts = [
-  { title: "User Research SOP", description: "Multi-stage qualitative methodology I authored", redacted: false },
-  { title: "Want & Need Analysis", description: "JTBD framework applied to 200+ interviews", redacted: true },
-  { title: "User Profile Template", description: "Multi-dimensional data capture framework", redacted: false },
-  { title: "Engagement Funnel", description: "CRM segmentation and conversion pathway", redacted: false },
-  { title: "5 Personas", description: "Personas with acquisition strategy", redacted: true },
+  { title: "Research Methodology", description: "Four-phase qualitative system from screening to synthesis", redacted: false },
+  { title: "Insight Dashboard", description: "Need themes, personas, JTBD, and pricing analysis from 200+ interviews", redacted: false },
 ]
 
 const metrics = [
@@ -27,35 +26,11 @@ export default function StruttCasePage() {
   const [activeModal, setActiveModal] = useState<string | null>(null)
 
   const modals = {
-    research: {
-      title: "The Qualitative-to-Quantitative GTM Engine",
-      narrative:
-        "Scaled an end-to-end research framework to extract actionable willingness-to-pay (WTP) metrics from emotional user narratives.",
-      points: [
-        "Phase 1: Strategic Screening of friction points.",
-        "Phase 2: Contextual deep-dive into psychological burden.",
-        "Phase 3: Concept introduction and Value Anchoring (WTP).",
-      ],
+    methodology: {
+      title: "Research Methodology",
     },
-    personas: {
-      title: "Psychological Persona Engineering",
-      narrative:
-        "Shifted product development focus from solving purely physical limitations to addressing the hidden burden of Cognitive Load.",
-      points: [
-        "The Independence Restorers: Driven by the elimination of caregiver dependency.",
-        "The Cognitive Load Offloaders: Driven by relieving the mental calculus of navigation.",
-        "The Lifestyle Evangelists: Driven by rejecting medical stigma; exhibiting high WTP elasticity.",
-      ],
-    },
-    pricing: {
-      title: "The 'Safety vs. Joy' Willingness-to-Pay (WTP) Paradigm",
-      narrative:
-        "Cross-analyzed qualitative sentiment with pricing expectations. Discovered a crucial market inflection point that redefined the Go-To-Market value proposition.",
-      points: [
-        "Baseline Driver: 'Safety' acts as the non-negotiable baseline where users remain highly price-sensitive.",
-        "Premium Driver: Premium willingness-to-pay scales exponentially with 'Joy'—the restoration of social freedom.",
-        "Business Outcome: Dictated the premium pricing tier and pivoted the GTM narrative from 'medical necessity' to 'lifestyle empowerment'.",
-      ],
+    insights: {
+      title: "Insight Dashboard",
     },
   } as const
 
@@ -194,15 +169,14 @@ export default function StruttCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-6">Portfolio Artifacts</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {artifacts.map((artifact) => (
               <button
                 key={artifact.title}
                 type="button"
                 onClick={() => {
-                  if (artifact.title === "User Research SOP") setActiveModal("research")
-                  if (artifact.title === "Want & Need Analysis") setActiveModal("personas")
-                  if (artifact.title === "5 Personas") setActiveModal("pricing")
+                  if (artifact.title === "Research Methodology") setActiveModal("methodology")
+                  if (artifact.title === "Insight Dashboard") setActiveModal("insights")
                 }}
                 className="p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors text-left"
               >
@@ -270,28 +244,22 @@ export default function StruttCasePage() {
       </div>
 
       <CaseStudyModal
-        open={activeModal === "research"}
-        onOpenChange={(open) => setActiveModal(open ? "research" : null)}
-        title={modals.research.title}
-        narrative={modals.research.narrative}
-        points={modals.research.points}
-      />
+        open={activeModal === "methodology"}
+        onOpenChange={(open) => setActiveModal(open ? "methodology" : null)}
+        title={modals.methodology.title}
+        size="full"
+      >
+        <ResearchMethodology />
+      </CaseStudyModal>
 
       <CaseStudyModal
-        open={activeModal === "personas"}
-        onOpenChange={(open) => setActiveModal(open ? "personas" : null)}
-        title={modals.personas.title}
-        narrative={modals.personas.narrative}
-        points={modals.personas.points}
-      />
-
-      <CaseStudyModal
-        open={activeModal === "pricing"}
-        onOpenChange={(open) => setActiveModal(open ? "pricing" : null)}
-        title={modals.pricing.title}
-        narrative={modals.pricing.narrative}
-        points={modals.pricing.points}
-      />
+        open={activeModal === "insights"}
+        onOpenChange={(open) => setActiveModal(open ? "insights" : null)}
+        title={modals.insights.title}
+        size="full"
+      >
+        <InsightDashboard />
+      </CaseStudyModal>
     </main>
   )
 }
