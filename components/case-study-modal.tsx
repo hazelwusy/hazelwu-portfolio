@@ -47,7 +47,9 @@ export function CaseStudyModal({
       <DialogContent className={`${sizeClasses[size]} ${size === "full" ? "overflow-y-auto" : ""}`}>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
-          {narrative && <DialogDescription>{narrative}</DialogDescription>}
+          <DialogDescription className={narrative ? "" : "sr-only"}>
+            {narrative || `Details for ${title}`}
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
