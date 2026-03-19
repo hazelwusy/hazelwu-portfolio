@@ -5,14 +5,12 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import { CaseStudyModal } from "@/components/case-study-modal"
+import HealthLiteracyDashboard from "@/components/artifacts/corewell-health-literacy"
 
 const tags = ["Health Equity", "Population Health", "Community Research", "Intervention Design"]
 
 const artifacts = [
-  { title: "Final Proposal", description: "Executive presentation delivered to health system leadership", redacted: false },
-  { title: "Evaluation Framework", description: "KPIs linking digital engagement to clinical outcomes", redacted: false },
-  { title: "Partnership Map", description: "6-organization stakeholder ecosystem", redacted: false },
-  { title: "Budget Model", description: "Per-event cost and scaling projections", redacted: false },
+  { title: "Health Literacy Dashboard", description: "Problem reframing, research process, solution design, and evaluation framework", redacted: false },
 ]
 
 const metrics = [
@@ -26,37 +24,8 @@ export default function CorewellCasePage() {
   const [activeModal, setActiveModal] = useState<string | null>(null)
 
   const modals = {
-    problem: {
-      title: "Diagnosing the Digital Divide via Systems Mapping",
-      narrative:
-        "Access to digital infrastructure is useless without baseline health literacy. Mapped the end-to-end patient journey for marginalized communities.",
-      points: [
-        "Systems Failure Identified: Pinpointed the exact drop-off node—the chasm between physical community trust and digital portal onboarding.",
-      ],
-      iframe: {
-        src: "https://embed.kumu.io/",
-        title: "Kumu Systems Map",
-      },
-    },
-    proposal: {
-      title: "The Health Academy: An O2O Service Blueprint",
-      narrative:
-        "Co-architected a hybrid Online-to-Offline (O2O) intervention strategy to systematically bridge the health literacy gap.",
-      points: [
-        "Frontstage (Physical): Trust-building community events to dismantle institutional intimidation.",
-        "The Bridge (Digital): Frictionless, guided onboarding for remote diagnostic hardware and patient portals.",
-        "Backstage (Sustained): Long-term virtual telemetry and curriculum to cement adoption.",
-      ],
-    },
-    metrics: {
-      title: "Population Health Telemetry & KPI Framework",
-      narrative:
-        "Developed a scalable evaluation dashboard separating behavioral engagement metrics from ultimate clinical outcomes to provide actionable executive levers.",
-      points: [
-        "Leading Indicators (Engagement): Telehealth session volume, virtual appointment frequency, and post-intervention literacy scores.",
-        "Lagging Indicators (Clinical): ER utilization rates and average hospital length of stay (LOS).",
-        "Disclaimer: Specific operational metrics abstracted to comply with civic collaboration NDAs.",
-      ],
+    healthLiteracy: {
+      title: "Health Literacy Dashboard",
     },
   } as const
 
@@ -148,16 +117,12 @@ export default function CorewellCasePage() {
           <h2 className="text-2xl font-bold text-foreground mb-6">What I Did</h2>
           
           <div className="space-y-8">
-            <button
-              type="button"
-              onClick={() => setActiveModal("problem")}
-              className="w-full text-left"
-            >
+            <div>
               <h3 className="text-lg font-semibold text-foreground mb-3">Reframing the problem</h3>
               <p className="text-muted-foreground leading-relaxed">
                 {"Through stakeholder conversations — including with the West Michigan President and frontline community health workers — we learned the barrier wasn't access to technology. Most community members had smartphones. The barrier was health literacy: the ability to find, understand, and actually use health information. This shifted our approach from 'give people more tools' to 'meet people where they are and teach them what they already have.'"}
               </p>
-            </button>
+            </div>
 
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-3">Ecosystem mapping</h3>
@@ -190,14 +155,13 @@ export default function CorewellCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-6">Portfolio Artifacts</h2>
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             {artifacts.map((artifact) => (
               <button
                 key={artifact.title}
                 type="button"
                 onClick={() => {
-                  if (artifact.title === "Final Proposal") setActiveModal("proposal")
-                  if (artifact.title === "Evaluation Framework") setActiveModal("metrics")
+                  if (artifact.title === "Health Literacy Dashboard") setActiveModal("healthLiteracy")
                 }}
                 className="p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors text-left"
               >
@@ -265,29 +229,13 @@ export default function CorewellCasePage() {
       </div>
 
       <CaseStudyModal
-        open={activeModal === "problem"}
-        onOpenChange={(open) => setActiveModal(open ? "problem" : null)}
-        title={modals.problem.title}
-        narrative={modals.problem.narrative}
-        points={modals.problem.points}
-        iframe={modals.problem.iframe}
-      />
-
-      <CaseStudyModal
-        open={activeModal === "proposal"}
-        onOpenChange={(open) => setActiveModal(open ? "proposal" : null)}
-        title={modals.proposal.title}
-        narrative={modals.proposal.narrative}
-        points={modals.proposal.points}
-      />
-
-      <CaseStudyModal
-        open={activeModal === "metrics"}
-        onOpenChange={(open) => setActiveModal(open ? "metrics" : null)}
-        title={modals.metrics.title}
-        narrative={modals.metrics.narrative}
-        points={modals.metrics.points}
-      />
+        open={activeModal === "healthLiteracy"}
+        onOpenChange={(open) => setActiveModal(open ? "healthLiteracy" : null)}
+        title={modals.healthLiteracy.title}
+        size="full"
+      >
+        <HealthLiteracyDashboard />
+      </CaseStudyModal>
     </main>
   )
 }
