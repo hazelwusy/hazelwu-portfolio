@@ -14,13 +14,15 @@ type CaseStudyModalProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
   title: string
-  narrative: string
-  points: string[]
+  narrative?: string
+  points?: string[]
   iframe?: {
     src: string
     title: string
   }
   footer?: ReactNode
+  children?: ReactNode
+  size?: "default" | "large" | "full"
 }
 
 export function CaseStudyModal({
@@ -31,23 +33,33 @@ export function CaseStudyModal({
   points,
   iframe,
   footer,
+  children,
+  size = "default",
 }: CaseStudyModalProps) {
+  const sizeClasses = {
+    default: "sm:max-w-2xl",
+    large: "sm:max-w-4xl",
+    full: "sm:max-w-6xl max-h-[90vh]",
+  }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl">
+      <DialogContent className={`${sizeClasses[size]} ${size === "full" ? "overflow-y-auto" : ""}`}>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{narrative}</DialogDescription>
+          {narrative && <DialogDescription>{narrative}</DialogDescription>}
         </DialogHeader>
 
         <div className="space-y-4">
-          <div className="space-y-2">
-            {points.map((point) => (
-              <p key={point} className="text-sm text-foreground leading-relaxed">
-                {point}
-              </p>
-            ))}
-          </div>
+          {points && points.length > 0 && (
+            <div className="space-y-2">
+              {points.map((point) => (
+                <p key={point} className="text-sm text-foreground leading-relaxed">
+                  {point}
+                </p>
+              ))}
+            </div>
+          )}
 
           {iframe ? (
             <iframe
@@ -56,6 +68,8 @@ export function CaseStudyModal({
               className="w-full min-h-[320px] border-0"
             />
           ) : null}
+
+          {children}
 
           {footer ? footer : null}
         </div>

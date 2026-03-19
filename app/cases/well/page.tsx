@@ -5,14 +5,16 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import { CaseStudyModal } from "@/components/case-study-modal"
+import MarketIntelligenceDashboard from "@/components/artifacts/market-intelligence-dashboard"
+import EscalationFlow from "@/components/artifacts/escalation-logic"
+import MCPArchitecture from "@/components/artifacts/mcp-architecture"
 
 const tags = ["Product Strategy", "AI/MCP Architecture", "Knowledge Management", "Financial Modeling"]
 
 const artifacts = [
-  { title: "MCP Server PRD", description: "Technical product requirements with AI-human handoff logic", redacted: true },
-  { title: "AI Help Center PRD", description: "Member-facing AI assistant product spec", redacted: true },
-  { title: "Platform Evaluation", description: "Competitive analysis with cost-benefit framework", redacted: false },
-  { title: "Financial Impact Model", description: "Support volume analysis and ROI projection", redacted: false },
+  { title: "MCP Server Architecture", description: "Dual-track MCP infrastructure enabling AI agents across internal and consumer surfaces", redacted: false },
+  { title: "AI-to-Human Escalation Logic", description: "Three-tier classification system for safe AI handoff boundaries in healthcare", redacted: false },
+  { title: "Market Intelligence Dashboard", description: "Platform evaluation with TCO modeling and ticket deflection analysis", redacted: false },
 ]
 
 const metrics = [
@@ -26,33 +28,14 @@ export default function WellCasePage() {
   const [activeModal, setActiveModal] = useState<string | null>(null)
 
   const modals = {
-    roi: {
-      title: "Strategic Procurement & TCO Modeling",
-      narrative:
-        "Engineered a Total Cost of Ownership (TCO) model comparing legacy CRM systems against agile, AI-native documentation platforms. Proved that a lightweight search architecture would bypass months of DevOps dependency.",
-      points: [
-        "Time-to-Value (TTV): Immediate vs. Months",
-        "Projected First-Year ROI: 10x-20x Return",
-        "Strategic Impact: Projected a conservative 10% deflection in Tier-1 support tickets, reclaiming high-value clinical bandwidth without incurring technical debt.",
-      ],
-    },
     mcp: {
-      title: "LLM-Agnostic Context Routing Architecture",
-      narrative:
-        "Authored the technical PRD establishing a secure Model Context Protocol (MCP). Architected a dual-track system to enforce strict data scoping constraints.",
-      points: [
-        "Track A (Internal): Admin-level context server enabling clinical operations teams to automate QA.",
-        "Track B (External): Consumer-facing, HIPAA-compliant gateway for secure biometric data retrieval.",
-      ],
+      title: "MCP Server Architecture",
+    },
+    escalation: {
+      title: "AI-to-Human Escalation Logic",
     },
     market: {
-      title: "Competitive Moat & White Space Analysis",
-      narrative:
-        "Conducted deep-dive technical evaluations of competitors in the digital health space. Identified that incumbents rely heavily on brittle, rule-based logic.",
-      points: [
-        "Strategic Decision: Validated the roadmap focus on a proprietary, biometric-driven personalization engine.",
-        "Positioning Shift: Ensured the product operates as a proactive clinical companion rather than a generic conversational search bar.",
-      ],
+      title: "Market Intelligence Dashboard",
     },
   } as const
 
@@ -165,15 +148,15 @@ export default function WellCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-6">Portfolio Artifacts</h2>
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {artifacts.map((artifact) => (
               <button
                 key={artifact.title}
                 type="button"
                 onClick={() => {
-                  if (artifact.title === "MCP Server PRD") setActiveModal("mcp")
-                  if (artifact.title === "Platform Evaluation") setActiveModal("market")
-                  if (artifact.title === "Financial Impact Model") setActiveModal("roi")
+                  if (artifact.title === "MCP Server Architecture") setActiveModal("mcp")
+                  if (artifact.title === "AI-to-Human Escalation Logic") setActiveModal("escalation")
+                  if (artifact.title === "Market Intelligence Dashboard") setActiveModal("market")
                 }}
                 className="p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors text-left"
               >
@@ -241,28 +224,31 @@ export default function WellCasePage() {
       </div>
 
       <CaseStudyModal
-        open={activeModal === "roi"}
-        onOpenChange={(open) => setActiveModal(open ? "roi" : null)}
-        title={modals.roi.title}
-        narrative={modals.roi.narrative}
-        points={modals.roi.points}
-      />
-
-      <CaseStudyModal
         open={activeModal === "mcp"}
         onOpenChange={(open) => setActiveModal(open ? "mcp" : null)}
         title={modals.mcp.title}
-        narrative={modals.mcp.narrative}
-        points={modals.mcp.points}
-      />
+        size="full"
+      >
+        <MCPArchitecture />
+      </CaseStudyModal>
+
+      <CaseStudyModal
+        open={activeModal === "escalation"}
+        onOpenChange={(open) => setActiveModal(open ? "escalation" : null)}
+        title={modals.escalation.title}
+        size="full"
+      >
+        <EscalationFlow />
+      </CaseStudyModal>
 
       <CaseStudyModal
         open={activeModal === "market"}
         onOpenChange={(open) => setActiveModal(open ? "market" : null)}
         title={modals.market.title}
-        narrative={modals.market.narrative}
-        points={modals.market.points}
-      />
+        size="full"
+      >
+        <MarketIntelligenceDashboard />
+      </CaseStudyModal>
     </main>
   )
 }
