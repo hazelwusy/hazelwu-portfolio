@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Sparkles, Zap, Target } from "lucide-react"
 import Link from "next/link"
 
 export default function WorkProcess() {
@@ -11,21 +11,33 @@ export default function WorkProcess() {
       subtitle: "Well · Product Management",
       summary: "Authored a PRD for an AI-powered internal workflow system and evaluated knowledge management platforms with a data-backed ROI model.",
       href: "/cases/well",
-      accentColor: "bg-[#87a878]",
+      icon: Sparkles,
+      iconBg: "bg-primary",
+      accentColor: "primary",
+      hoverBg: "group-hover:bg-primary/5",
+      number: "01",
     },
     {
       title: "Global GTM & User Empathy Mapping",
       subtitle: "Strutt · GTM Strategy",
       summary: "Designed the end-to-end user research methodology and synthesized 200+ interviews into 5 actionable personas that reshaped the company's positioning.",
       href: "/cases/strutt",
-      accentColor: "bg-[#c9a66b]",
+      icon: Target,
+      iconBg: "bg-warm",
+      accentColor: "warm",
+      hoverBg: "group-hover:bg-warm/5",
+      number: "02",
     },
     {
       title: "Strategic Interventions for Health Equity",
       subtitle: "Corewell Health · Strategy & Operations",
       summary: "Co-designed a community health literacy program and defined population health KPIs correlating digital engagement with clinical outcomes.",
       href: "/cases/corewell",
-      accentColor: "bg-[#6b8f5c]",
+      icon: Zap,
+      iconBg: "bg-secondary",
+      accentColor: "secondary",
+      hoverBg: "group-hover:bg-secondary/5",
+      number: "03",
     },
   ]
 
@@ -39,33 +51,51 @@ export default function WorkProcess() {
     },
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, rotateY: -5 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 },
+      rotateY: 0,
+      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
     },
   }
 
   return (
-    <section id="cases" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-secondary/20">
+    <section id="cases" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/3 left-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/5 via-secondary/3 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-warm/5 to-transparent rounded-full blur-3xl" />
+      </div>
+
       <div className="max-w-6xl mx-auto">
+        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-balance">
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              Selected Cases
-            </span>
+          <motion.div
+            className="inline-flex items-center gap-3 mb-4"
+            whileHover={{ x: 5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <span className="text-sm font-mono text-primary tracking-wider uppercase">04</span>
+            <span className="w-12 h-px bg-primary/40" />
+          </motion.div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Selected Cases
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full" />
+          <p className="text-muted-foreground text-lg max-w-2xl">
+            Real-world projects where I've driven impact through product thinking and strategic analysis.
+          </p>
         </motion.div>
 
+        {/* Cases grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -73,39 +103,59 @@ export default function WorkProcess() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <div className="grid md:grid-cols-3 gap-6">
-            {cases.map((caseItem) => (
-              <motion.div key={caseItem.title} variants={itemVariants}>
-                <Link href={caseItem.href}>
-                  <motion.div
-                    className="relative group h-full bg-card rounded-lg border border-border overflow-hidden cursor-pointer"
-                    whileHover={{ y: -8, borderColor: "var(--primary)" }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  >
-                    {/* Accent bar at top */}
-                    <div className={`h-1.5 w-full ${caseItem.accentColor}`} />
-                    
-                    <div className="p-6">
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {cases.map((caseItem) => {
+              const Icon = caseItem.icon
+              return (
+                <motion.div key={caseItem.title} variants={cardVariants}>
+                  <Link href={caseItem.href}>
+                    <motion.div
+                      className={`group relative h-full bg-card rounded-2xl border border-border overflow-hidden cursor-pointer ${caseItem.hoverBg} transition-colors`}
+                      whileHover={{ 
+                        y: -8,
+                        transition: { type: "spring", stiffness: 300, damping: 20 }
+                      }}
+                    >
+                      {/* Number badge */}
+                      <div className="absolute top-4 right-4 text-5xl font-bold text-muted/10 group-hover:text-primary/10 transition-colors">
+                        {caseItem.number}
+                      </div>
+                      
+                      {/* Top accent bar */}
+                      <div className={`h-1 w-full bg-${caseItem.accentColor}`} />
+                      
+                      <div className="relative z-10 p-6">
+                        {/* Icon */}
+                        <motion.div 
+                          className={`inline-flex p-3 rounded-xl ${caseItem.iconBg} shadow-md mb-4`}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        >
+                          <Icon className="w-5 h-5 text-white" />
+                        </motion.div>
 
-                      <div className="relative z-10">
-                        <h3 className="font-bold text-lg mb-2 text-foreground leading-tight">
+                        {/* Content */}
+                        <h3 className="font-bold text-lg mb-2 text-foreground leading-tight group-hover:text-primary transition-colors">
                           {caseItem.title}
                         </h3>
-                        <p className="text-sm text-primary mb-3">{caseItem.subtitle}</p>
-                        <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2">
+                        <p className="text-sm mb-3 font-medium text-primary">{caseItem.subtitle}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-6 line-clamp-3">
                           {caseItem.summary}
                         </p>
                         
-                        <span className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
-                          Read more
-                          <ArrowRight className="w-4 h-4" />
+                        {/* CTA */}
+                        <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
+                          <span className="relative">
+                            Read case study
+                            <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+                          </span>
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </span>
                       </div>
-                    </div>
-                  </motion.div>
-                </Link>
-              </motion.div>
-            ))}
+                    </motion.div>
+                  </Link>
+                </motion.div>
+              )
+            })}
           </div>
         </motion.div>
       </div>

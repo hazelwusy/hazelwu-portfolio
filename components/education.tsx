@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { GraduationCap, Landmark } from "lucide-react"
+import { GraduationCap, Landmark, Award, BookOpen } from "lucide-react"
 
 export default function Education() {
   const educationItems = [
@@ -12,6 +12,9 @@ export default function Education() {
       courses: "Health Systems · Data Analytics in Healthcare · Health Care Finance · Data Science & Econometrics · Applied Data Analysis",
       icon: GraduationCap,
       isPrimary: true,
+      iconBg: "bg-primary",
+      borderColor: "border-primary/30",
+      accentBarColor: "bg-primary",
     },
     {
       institution: "University of Michigan, ICPSR",
@@ -20,6 +23,9 @@ export default function Education() {
       courses: "Causal Inference · Bayesian Modeling · Time Series · Panel & Longitudinal Analysis",
       icon: Landmark,
       isPrimary: false,
+      iconBg: "bg-warm",
+      borderColor: "border-warm/30",
+      accentBarColor: "bg-warm",
     },
   ]
 
@@ -28,41 +34,59 @@ export default function Education() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.15,
         delayChildren: 0.2,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30, scale: 0.98 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      scale: 1,
+      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
     },
   }
 
   return (
-    <section id="education" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-secondary/10 to-background">
+    <section id="education" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-bl from-secondary/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-warm/5 to-transparent rounded-full blur-3xl" />
+      </div>
+
       <div className="max-w-6xl mx-auto">
+        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-balance">
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              Education
-            </span>
+          <motion.div
+            className="inline-flex items-center gap-3 mb-4"
+            whileHover={{ x: 5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <span className="text-sm font-mono text-primary tracking-wider uppercase">03</span>
+            <span className="w-12 h-px bg-primary/40" />
+          </motion.div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Education
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full" />
+          <p className="text-muted-foreground text-lg max-w-2xl">
+            Academic foundation in health systems, information science, and quantitative methods.
+          </p>
         </motion.div>
 
+        {/* Education cards */}
         <motion.div
-          className="grid lg:grid-cols-2 gap-8 mb-16"
+          className="grid lg:grid-cols-2 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -73,38 +97,58 @@ export default function Education() {
             return (
               <motion.div key={item.institution} variants={itemVariants}>
                 <motion.div
-                  className={`relative h-full p-6 bg-card rounded-lg border overflow-hidden group cursor-pointer ${item.isPrimary ? 'border-primary/50' : 'border-border'}`}
-                  whileHover={{ y: -8, borderColor: "var(--primary)" }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className={`group relative h-full bg-card rounded-2xl border ${item.borderColor} overflow-hidden hover:border-opacity-60 transition-colors`}
+                  whileHover={{ 
+                    y: -6,
+                    transition: { type: "spring", stiffness: 300, damping: 20 }
+                  }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Top accent bar */}
+                  <div className={`h-1 w-full ${item.accentBarColor}`} />
 
-                  <div className="relative z-10">
+                  <div className="relative z-10 p-6">
+                    {/* Header */}
                     <div className="flex items-start gap-4 mb-4">
                       <motion.div
-                        className={`p-3 rounded-lg flex-shrink-0 ${item.isPrimary ? 'bg-gradient-to-br from-[#87a878] to-[#6b8f5c]' : 'bg-gradient-to-br from-[#c9a66b] to-[#a68b4b]'}`}
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                        className={`p-3 rounded-xl ${item.iconBg} shadow-md flex-shrink-0`}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
                       >
                         <Icon className="w-6 h-6 text-white" aria-hidden="true" />
                       </motion.div>
-                      <div>
-                        <h3 className="font-bold text-lg text-foreground">{item.institution}</h3>
-                        <p className="text-sm text-foreground/90 mt-1">{item.degree}</p>
-                        {item.highlight && (
-                          <p className="text-sm text-primary mt-1">{item.highlight}</p>
-                        )}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-xl text-foreground mb-1 group-hover:text-primary transition-colors">{item.institution}</h3>
+                        <p className="text-sm text-foreground/80 leading-relaxed">{item.degree}</p>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.courses}</p>
+
+                    {/* Highlight badge */}
+                    {item.highlight && (
+                      <motion.div 
+                        className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        <Award className="w-3.5 h-3.5 text-primary" />
+                        <span className="text-xs font-medium text-foreground">{item.highlight}</span>
+                      </motion.div>
+                    )}
+
+                    {/* Courses */}
+                    <div className="flex items-start gap-2">
+                      <BookOpen className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-muted-foreground leading-relaxed">{item.courses}</p>
+                    </div>
                   </div>
+
+
                 </motion.div>
               </motion.div>
             )
           })}
         </motion.div>
-
-
       </div>
     </section>
   )
