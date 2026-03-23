@@ -85,17 +85,14 @@ export default function Contact() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="w-12 h-px bg-gradient-to-r from-transparent to-warm" />
-            <span className="text-sm font-mono text-warm tracking-wider uppercase">06</span>
-            <span className="text-sm font-mono text-primary tracking-wider uppercase">Get in touch</span>
-            <span className="w-12 h-px bg-gradient-to-l from-transparent to-primary" />
+            <span className="w-12 h-px bg-primary/40" />
+            <span className="text-sm font-mono text-primary tracking-wider uppercase">06</span>
+            <span className="text-sm font-mono text-muted-foreground tracking-wider uppercase">Get in touch</span>
+            <span className="w-12 h-px bg-primary/40" />
           </motion.div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Let's{" "}
-            <span className="bg-gradient-to-r from-primary via-secondary to-warm bg-clip-text text-transparent">
-              Connect
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+            Let's <span className="text-primary">Connect</span>
           </h2>
           
           <motion.p 
@@ -122,21 +119,17 @@ export default function Contact() {
             return (
               <motion.div key={method.label} variants={itemVariants}>
                 <motion.div
-                  className="group relative h-full bg-card rounded-2xl border border-border overflow-hidden"
+                  className="group relative h-full bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/40 transition-colors duration-300"
                   whileHover={{ 
                     y: -6,
                     transition: { type: "spring", stiffness: 300, damping: 20 }
                   }}
                 >
-                  {/* Hover gradient border */}
-                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl p-[1px] bg-gradient-to-br ${method.gradient}`}>
-                    <div className="absolute inset-[1px] bg-card rounded-2xl" />
-                  </div>
 
                   <div className="relative z-10 p-6 text-center">
                     {/* Icon */}
                     <motion.div
-                      className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${method.gradient} flex items-center justify-center mx-auto mb-4 shadow-lg`}
+                      className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center mx-auto mb-4 shadow-md"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     >
@@ -164,8 +157,7 @@ export default function Contact() {
                     )}
                   </div>
 
-                  {/* Decorative glow */}
-                  <div className={`absolute -bottom-10 left-1/2 -translate-x-1/2 w-32 h-32 bg-gradient-to-t ${method.gradient} opacity-0 group-hover:opacity-10 rounded-full blur-2xl transition-opacity duration-500`} />
+
                 </motion.div>
               </motion.div>
             )
@@ -182,7 +174,7 @@ export default function Contact() {
         >
           <motion.a
             href="mailto:hazelwu@ad.unc.edu"
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary via-secondary to-accent text-primary-foreground rounded-xl font-medium shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 overflow-hidden relative"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg hover:shadow-xl hover:shadow-primary/20 hover:bg-primary/90 transition-all duration-300 overflow-hidden relative"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >

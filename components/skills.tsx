@@ -9,33 +9,37 @@ export default function Skills() {
       title: "Product & Strategy",
       icon: Lightbulb,
       skills: ["Product Management", "PRD & Requirements Writing", "Roadmap Prioritization", "Agile/Scrum", "GTM Strategy", "Competitive Analysis", "Pricing & Financial Modeling", "Stakeholder Alignment"],
-      gradient: "from-primary to-secondary",
-      iconBg: "bg-gradient-to-br from-primary to-secondary",
+      accentColor: "primary",
+      iconBg: "bg-primary",
       dotColor: "bg-primary",
+      borderHover: "group-hover:border-primary/40",
     },
     {
       title: "User Research & Insights",
       icon: Users,
       skills: ["User Interviews", "Persona Development", "JTBD Framework", "Qualitative Synthesis", "Empathy Mapping", "Usability Evaluation", "Survey Design"],
-      gradient: "from-secondary to-accent",
-      iconBg: "bg-gradient-to-br from-secondary to-accent",
+      accentColor: "secondary",
+      iconBg: "bg-secondary",
       dotColor: "bg-secondary",
+      borderHover: "group-hover:border-secondary/40",
     },
     {
       title: "Data & Analytics",
       icon: BarChart3,
       skills: ["SQL", "Python", "Tableau", "Salesforce", "Excel/VBA", "CRM & Funnel Analytics", "A/B Testing Logic", "KPI Design"],
-      gradient: "from-warm to-warm-light",
-      iconBg: "bg-gradient-to-br from-warm to-warm-light",
+      accentColor: "warm",
+      iconBg: "bg-warm",
       dotColor: "bg-warm",
+      borderHover: "group-hover:border-warm/40",
     },
     {
       title: "Healthcare & Domain",
       icon: HeartPulse,
       skills: ["EHR Systems (Epic)", "Telehealth Workflows", "Health Policy & Regulation", "Population Health", "Digital Health Interventions", "Clinical-Technical Translation", "Health Equity"],
-      gradient: "from-accent to-primary",
-      iconBg: "bg-gradient-to-br from-accent to-primary",
+      accentColor: "accent",
+      iconBg: "bg-accent",
       dotColor: "bg-accent",
+      borderHover: "group-hover:border-accent/40",
     },
   ]
 
@@ -82,14 +86,12 @@ export default function Skills() {
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="text-sm font-mono text-warm tracking-wider uppercase">02</span>
-            <span className="w-12 h-px bg-gradient-to-r from-warm via-primary to-transparent" />
+            <span className="text-sm font-mono text-primary tracking-wider uppercase">02</span>
+            <span className="w-12 h-px bg-primary/40" />
           </motion.div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Skills
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Skills
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl">
             A blend of technical capabilities and domain expertise for building impactful health tech solutions.
@@ -113,19 +115,12 @@ export default function Skills() {
                 custom={categoryIndex}
               >
                 <motion.div
-                  className="group relative h-full p-6 bg-card rounded-2xl border border-border overflow-hidden cursor-default"
+                  className={`group relative h-full p-6 bg-card rounded-2xl border border-border overflow-hidden cursor-default ${category.borderHover} transition-colors duration-300`}
                   whileHover={{ 
                     y: -8,
                     transition: { type: "spring", stiffness: 300, damping: 20 }
                   }}
                 >
-                  {/* Gradient border on hover */}
-                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl p-[1px] bg-gradient-to-br ${category.gradient}`}>
-                    <div className="absolute inset-[1px] bg-card rounded-2xl" />
-                  </div>
-                  
-                  {/* Background glow */}
-                  <div className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-10 rounded-full blur-3xl transition-opacity duration-500`} />
 
                   <div className="relative z-10">
                     {/* Icon and title */}

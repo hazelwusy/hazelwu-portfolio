@@ -162,12 +162,12 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          {/* Tagline with gradient - green to orange */}
+          {/* Tagline - clean solid color */}
           <motion.p
             variants={itemVariants}
             className="text-xl sm:text-2xl mb-4 font-semibold"
           >
-            <span className="bg-gradient-to-r from-primary via-secondary to-warm bg-clip-text text-transparent">
+            <span className="text-primary">
               Health tech, human-centered.
             </span>
             <span className="text-muted-foreground"> Product, data, and strategy.</span>
@@ -186,7 +186,7 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <MagneticButton
               href="#cases"
-              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-xl font-medium overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(156,185,156,0.4)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium overflow-hidden transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
             >
               {/* Shine effect */}
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
@@ -221,7 +221,7 @@ export default function Hero() {
               className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-2"
             >
               <motion.div 
-                className="w-1.5 h-1.5 rounded-full bg-gradient-to-b from-primary to-warm"
+                className="w-1.5 h-1.5 rounded-full bg-primary"
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               />

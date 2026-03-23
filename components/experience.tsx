@@ -88,15 +88,12 @@ export default function Experience() {
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="text-sm font-mono text-warm tracking-wider uppercase">05</span>
-            <span className="w-12 h-px bg-gradient-to-r from-warm via-primary to-transparent" />
+            <span className="text-sm font-mono text-primary tracking-wider uppercase">05</span>
+            <span className="w-12 h-px bg-primary/40" />
           </motion.div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Professional{" "}
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Experience
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Professional Experience
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl">
             Building expertise across product management, strategy, and health tech operations.
@@ -111,8 +108,8 @@ export default function Experience() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {/* Vertical timeline line with gradient */}
-          <div className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-primary via-warm to-accent rounded-full" />
+          {/* Vertical timeline line */}
+          <div className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-primary/30 rounded-full" />
 
           {experiences.map((exp, index) => (
             <motion.div 
@@ -122,7 +119,7 @@ export default function Experience() {
             >
               {/* Timeline dot with pulse for current */}
               <div className="absolute left-0 top-1">
-                <div className={`relative w-6 h-6 rounded-full bg-gradient-to-br ${exp.gradient} flex items-center justify-center shadow-lg`}>
+                <div className={`relative w-6 h-6 rounded-full ${exp.dotColor} flex items-center justify-center shadow-md`}>
                   <Briefcase className="w-3 h-3 text-white" />
                   {exp.isCurrent && (
                     <>
@@ -151,7 +148,7 @@ export default function Experience() {
                       <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">
                         {exp.title}
                       </h3>
-                      <p className={`font-semibold bg-gradient-to-r ${exp.gradient} bg-clip-text text-transparent`}>
+                      <p className="font-semibold text-primary">
                         {exp.company}
                       </p>
                     </div>

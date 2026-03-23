@@ -76,14 +76,11 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
               className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:rounded group"
             >
               <motion.div 
-                className="relative w-9 h-9 bg-gradient-to-br from-primary via-secondary to-accent rounded-xl flex items-center justify-center overflow-hidden shadow-md"
+                className="relative w-9 h-9 bg-primary rounded-xl flex items-center justify-center overflow-hidden shadow-md"
                 whileHover={{ scale: 1.05, rotate: 3 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <span className="text-primary-foreground font-bold text-sm relative z-10">HW</span>
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-warm to-warm-light opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                />
               </motion.div>
               <span className="font-bold text-lg hidden sm:inline text-foreground group-hover:text-primary transition-colors">
                 Hazel
@@ -102,7 +99,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                 >
                   <span className="relative">
                     {link.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
                   </span>
                 </motion.a>
               ))}
@@ -118,7 +115,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                 >
                   <span className="relative">
                     Cases
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-warm to-warm-light group-hover:w-full transition-all duration-300" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
                   </span>
                   <motion.span
                     animate={{ rotate: isCasesOpen ? 180 : 0 }}
@@ -149,7 +146,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                             whileHover={{ x: 4 }}
                             className="flex items-center gap-3"
                           >
-                            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent group-hover:scale-125 transition-transform" />
+                            <span className="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform" />
                             {link.label}
                           </motion.span>
                         </Link>
@@ -169,7 +166,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                 >
                   <span className="relative">
                     {link.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
                   </span>
                 </motion.a>
               ))}
@@ -269,7 +266,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                 
                 {/* Cases section in mobile */}
                 <div className="px-4 py-2 text-xs font-semibold text-primary uppercase tracking-wider flex items-center gap-2">
-                  <span className="w-6 h-px bg-gradient-to-r from-primary to-transparent" />
+                  <span className="w-6 h-px bg-primary/40" />
                   Cases
                 </div>
                 {caseLinks.map((link, index) => (
@@ -279,7 +276,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                     className="px-6 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-primary flex items-center gap-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary to-accent" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     {link.label}
                   </Link>
                 ))}

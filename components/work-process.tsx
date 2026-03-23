@@ -12,7 +12,8 @@ export default function WorkProcess() {
       summary: "Authored a PRD for an AI-powered internal workflow system and evaluated knowledge management platforms with a data-backed ROI model.",
       href: "/cases/well",
       icon: Sparkles,
-      gradient: "from-primary to-secondary",
+      iconBg: "bg-primary",
+      accentColor: "primary",
       hoverBg: "group-hover:bg-primary/5",
       number: "01",
     },
@@ -22,7 +23,8 @@ export default function WorkProcess() {
       summary: "Designed the end-to-end user research methodology and synthesized 200+ interviews into 5 actionable personas that reshaped the company's positioning.",
       href: "/cases/strutt",
       icon: Target,
-      gradient: "from-warm to-warm-light",
+      iconBg: "bg-warm",
+      accentColor: "warm",
       hoverBg: "group-hover:bg-warm/5",
       number: "02",
     },
@@ -32,7 +34,8 @@ export default function WorkProcess() {
       summary: "Co-designed a community health literacy program and defined population health KPIs correlating digital engagement with clinical outcomes.",
       href: "/cases/corewell",
       icon: Zap,
-      gradient: "from-secondary to-accent",
+      iconBg: "bg-secondary",
+      accentColor: "secondary",
       hoverBg: "group-hover:bg-secondary/5",
       number: "03",
     },
@@ -80,14 +83,12 @@ export default function WorkProcess() {
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="text-sm font-mono text-warm tracking-wider uppercase">04</span>
-            <span className="w-12 h-px bg-gradient-to-r from-warm via-primary to-transparent" />
+            <span className="text-sm font-mono text-primary tracking-wider uppercase">04</span>
+            <span className="w-12 h-px bg-primary/40" />
           </motion.div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Selected Cases
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Selected Cases
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl">
             Real-world projects where I've driven impact through product thinking and strategic analysis.
@@ -119,25 +120,13 @@ export default function WorkProcess() {
                         {caseItem.number}
                       </div>
                       
-                      {/* Top accent bar with animation */}
-                      <div className={`h-1.5 w-full bg-gradient-to-r ${caseItem.gradient} relative overflow-hidden`}>
-                        <motion.div 
-                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                          initial={{ x: "-100%" }}
-                          whileHover={{ x: "100%" }}
-                          transition={{ duration: 0.6, ease: "easeInOut" }}
-                        />
-                      </div>
-                      
-                      {/* Hover gradient border */}
-                      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl p-[1px] bg-gradient-to-br ${caseItem.gradient}`}>
-                        <div className="absolute inset-[1px] bg-card rounded-2xl" />
-                      </div>
+                      {/* Top accent bar */}
+                      <div className={`h-1 w-full bg-${caseItem.accentColor}`} />
                       
                       <div className="relative z-10 p-6">
                         {/* Icon */}
                         <motion.div 
-                          className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${caseItem.gradient} shadow-lg mb-4`}
+                          className={`inline-flex p-3 rounded-xl ${caseItem.iconBg} shadow-md mb-4`}
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ type: "spring", stiffness: 400, damping: 15 }}
                         >
@@ -148,29 +137,20 @@ export default function WorkProcess() {
                         <h3 className="font-bold text-lg mb-2 text-foreground leading-tight group-hover:text-primary transition-colors">
                           {caseItem.title}
                         </h3>
-                        <p className={`text-sm mb-3 font-medium bg-gradient-to-r ${caseItem.gradient} bg-clip-text text-transparent`}>{caseItem.subtitle}</p>
+                        <p className="text-sm mb-3 font-medium text-primary">{caseItem.subtitle}</p>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-6 line-clamp-3">
                           {caseItem.summary}
                         </p>
                         
                         {/* CTA */}
-                        <span className={`inline-flex items-center gap-2 text-sm font-medium bg-gradient-to-r ${caseItem.gradient} bg-clip-text text-transparent`}>
+                        <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
                           <span className="relative">
                             Read case study
-                            <span className={`absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r ${caseItem.gradient} group-hover:w-full transition-all duration-300`} />
+                            <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
                           </span>
-                          <motion.span
-                            className="inline-block"
-                            animate={{ x: [0, 4, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                          >
-                            <ArrowRight className="w-4 h-4 text-primary" />
-                          </motion.span>
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </span>
                       </div>
-
-                      {/* Decorative glow */}
-                      <div className={`absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-br ${caseItem.gradient} opacity-0 group-hover:opacity-10 rounded-full blur-3xl transition-opacity duration-500`} />
                     </motion.div>
                   </Link>
                 </motion.div>

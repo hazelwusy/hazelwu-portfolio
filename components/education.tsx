@@ -12,8 +12,9 @@ export default function Education() {
       courses: "Health Systems · Data Analytics in Healthcare · Health Care Finance · Data Science & Econometrics · Applied Data Analysis",
       icon: GraduationCap,
       isPrimary: true,
-      accentColor: "from-primary to-secondary",
+      iconBg: "bg-primary",
       borderColor: "border-primary/30",
+      accentBarColor: "bg-primary",
     },
     {
       institution: "University of Michigan, ICPSR",
@@ -22,8 +23,9 @@ export default function Education() {
       courses: "Causal Inference · Bayesian Modeling · Time Series · Panel & Longitudinal Analysis",
       icon: Landmark,
       isPrimary: false,
-      accentColor: "from-warm to-warm-light",
+      iconBg: "bg-warm",
       borderColor: "border-warm/30",
+      accentBarColor: "bg-warm",
     },
   ]
 
@@ -70,14 +72,12 @@ export default function Education() {
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="text-sm font-mono text-warm tracking-wider uppercase">03</span>
-            <span className="w-12 h-px bg-gradient-to-r from-warm via-primary to-transparent" />
+            <span className="text-sm font-mono text-primary tracking-wider uppercase">03</span>
+            <span className="w-12 h-px bg-primary/40" />
           </motion.div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Education
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Education
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl">
             Academic foundation in health systems, information science, and quantitative methods.
@@ -104,25 +104,13 @@ export default function Education() {
                   }}
                 >
                   {/* Top accent bar */}
-                  <div className={`h-1.5 w-full bg-gradient-to-r ${item.accentColor}`}>
-                    <motion.div
-                      className="h-full bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "100%" }}
-                      transition={{ duration: 0.8, ease: "easeInOut" }}
-                    />
-                  </div>
-                  
-                  {/* Hover gradient border */}
-                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl p-[1px] bg-gradient-to-br ${item.accentColor}`}>
-                    <div className="absolute inset-[1px] bg-card rounded-2xl" />
-                  </div>
+                  <div className={`h-1 w-full ${item.accentBarColor}`} />
 
                   <div className="relative z-10 p-6">
                     {/* Header */}
                     <div className="flex items-start gap-4 mb-4">
                       <motion.div
-                        className={`p-3 rounded-xl bg-gradient-to-br ${item.accentColor} shadow-lg flex-shrink-0`}
+                        className={`p-3 rounded-xl ${item.iconBg} shadow-md flex-shrink-0`}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
                       >
@@ -137,13 +125,13 @@ export default function Education() {
                     {/* Highlight badge */}
                     {item.highlight && (
                       <motion.div 
-                        className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20"
+                        className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20"
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
                       >
-                        <Award className="w-3.5 h-3.5 text-warm" />
+                        <Award className="w-3.5 h-3.5 text-primary" />
                         <span className="text-xs font-medium text-foreground">{item.highlight}</span>
                       </motion.div>
                     )}
@@ -155,8 +143,7 @@ export default function Education() {
                     </div>
                   </div>
 
-                  {/* Decorative corner */}
-                  <div className={`absolute -bottom-10 -right-10 w-32 h-32 bg-gradient-to-br ${item.accentColor} opacity-5 rounded-full blur-2xl group-hover:opacity-15 transition-opacity`} />
+
                 </motion.div>
               </motion.div>
             )
