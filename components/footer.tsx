@@ -8,9 +8,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { href: "mailto:hazelwu@ad.unc.edu", icon: Mail, label: "Email" },
-    { href: "https://www.linkedin.com/in/hazel-w-a23593239/", icon: Linkedin, label: "LinkedIn" },
-    { href: "https://github.com/hazelwusy", icon: Github, label: "GitHub" },
+    { href: "mailto:hazelwu@ad.unc.edu", icon: Mail, label: "Email", hoverColor: "hover:text-primary hover:bg-primary/10" },
+    { href: "https://www.linkedin.com/in/hazel-w-a23593239/", icon: Linkedin, label: "LinkedIn", hoverColor: "hover:text-[#0077b5] hover:bg-[#0077b5]/10" },
+    { href: "https://github.com/hazelwusy", icon: Github, label: "GitHub", hoverColor: "hover:text-foreground hover:bg-muted" },
   ]
 
   const navLinks = [
@@ -26,7 +26,7 @@ export default function Footer() {
       {/* Subtle gradient background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-gradient-to-t from-primary/5 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-gradient-to-t from-accent/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-gradient-to-t from-warm/5 to-transparent rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -39,10 +39,10 @@ export default function Footer() {
             transition={{ duration: 0.5 }}
           >
             <Link href="/" className="inline-flex items-center gap-2 mb-4 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+              <div className="w-10 h-10 bg-gradient-to-br from-primary via-secondary to-accent rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
                 <span className="text-primary-foreground font-bold">HW</span>
               </div>
-              <span className="font-bold text-xl text-foreground">Hazel Wu</span>
+              <span className="font-bold text-xl text-foreground group-hover:text-primary transition-colors">Hazel Wu</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               Health tech enthusiast passionate about building products that make healthcare work better for people.
@@ -56,7 +56,10 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h3 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wider">Navigation</h3>
+            <h3 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+              <span className="w-4 h-px bg-gradient-to-r from-primary to-transparent" />
+              Navigation
+            </h3>
             <ul className="grid grid-cols-2 gap-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -79,7 +82,10 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wider">Connect</h3>
+            <h3 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+              <span className="w-4 h-px bg-gradient-to-r from-warm to-transparent" />
+              Connect
+            </h3>
             <div className="flex gap-3 mb-4">
               {socialLinks.map((social) => {
                 const Icon = social.icon
@@ -89,7 +95,7 @@ export default function Footer() {
                     href={social.href}
                     target={social.href.startsWith("http") ? "_blank" : undefined}
                     rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="w-10 h-10 rounded-xl bg-muted hover:bg-primary/10 flex items-center justify-center text-muted-foreground hover:text-primary transition-all"
+                    className={`w-10 h-10 rounded-xl bg-muted flex items-center justify-center text-muted-foreground transition-all ${social.hoverColor}`}
                     whileHover={{ y: -3, scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label={social.label}
@@ -99,7 +105,10 @@ export default function Footer() {
                 )
               })}
             </div>
-            <p className="text-sm text-muted-foreground">Chapel Hill, NC</p>
+            <p className="text-sm text-muted-foreground flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-warm" />
+              Chapel Hill, NC
+            </p>
           </motion.div>
         </div>
 
@@ -111,8 +120,8 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Made with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" /> by Shuyan (Hazel) Wu
+          <p className="text-sm text-muted-foreground flex items-center gap-1.5">
+            Made with <Heart className="w-3.5 h-3.5 text-warm fill-warm" /> by Shuyan (Hazel) Wu
           </p>
           <p className="text-sm text-muted-foreground">
             &copy; {currentYear} All rights reserved.

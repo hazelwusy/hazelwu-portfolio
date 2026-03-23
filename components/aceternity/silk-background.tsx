@@ -22,11 +22,11 @@ export const SilkBackground = ({
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3])
 
   return (
-    <div ref={containerRef} className={`relative w-full overflow-hidden ${className}`}>
+    <div ref={containerRef} className={`relative w-full overflow-hidden ${className}`} style={{ position: 'relative' }}>
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {/* Main flowing gradient orbs with parallax */}
+        {/* Main flowing gradient orbs with green and orange */}
         <motion.div
-          className="absolute -top-20 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary/20 via-accent/10 to-transparent rounded-full blur-[100px]"
+          className="absolute -top-20 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary/15 via-secondary/10 to-transparent rounded-full blur-[100px]"
           style={{ y: y1, opacity }}
           animate={{
             scale: [1, 1.1, 1],
@@ -40,7 +40,7 @@ export const SilkBackground = ({
         />
         
         <motion.div
-          className="absolute top-1/3 -right-20 w-[400px] h-[400px] bg-gradient-to-bl from-accent/15 via-primary/8 to-transparent rounded-full blur-[80px]"
+          className="absolute top-1/3 -right-20 w-[400px] h-[400px] bg-gradient-to-bl from-warm/12 via-warm-light/8 to-transparent rounded-full blur-[80px]"
           style={{ y: y2, opacity }}
           animate={{
             scale: [1, 0.95, 1],
@@ -55,7 +55,7 @@ export const SilkBackground = ({
         />
         
         <motion.div
-          className="absolute bottom-1/4 left-1/3 w-[450px] h-[450px] bg-gradient-to-tr from-primary/12 via-secondary/8 to-transparent rounded-full blur-[90px]"
+          className="absolute bottom-1/4 left-1/3 w-[450px] h-[450px] bg-gradient-to-tr from-accent/10 via-primary/8 to-transparent rounded-full blur-[90px]"
           style={{ opacity }}
           animate={{
             scale: [1, 1.05, 1],
@@ -71,15 +71,15 @@ export const SilkBackground = ({
 
         {/* Subtle grid overlay */}
         <div 
-          className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.015] dark:opacity-[0.025]"
           style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
-            backgroundSize: '40px 40px',
+            backgroundSize: '50px 50px',
           }}
         />
 
         {/* Noise texture overlay */}
-        <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] mix-blend-overlay">
+        <div className="absolute inset-0 opacity-[0.012] dark:opacity-[0.025] mix-blend-overlay">
           <svg className="w-full h-full">
             <filter id="noiseFilter">
               <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/>

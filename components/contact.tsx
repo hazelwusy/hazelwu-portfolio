@@ -31,7 +31,7 @@ export default function Contact() {
       label: "Email",
       value: "hazelwu@ad.unc.edu",
       href: "mailto:hazelwu@ad.unc.edu",
-      gradient: "from-primary to-accent",
+      gradient: "from-primary to-secondary",
       description: "Best way to reach me",
     },
     {
@@ -48,7 +48,7 @@ export default function Contact() {
       label: "GitHub",
       value: "View my work",
       href: "https://github.com/hazelwusy",
-      gradient: "from-[#333] to-[#555]",
+      gradient: "from-foreground/80 to-foreground/60",
       external: true,
       description: "Code & projects",
     },
@@ -57,7 +57,7 @@ export default function Contact() {
       label: "Location",
       value: "Chapel Hill, NC",
       href: "",
-      gradient: "from-[#f59e0b] to-[#d97706]",
+      gradient: "from-warm to-warm-light",
       isText: true,
       description: "Open to relocation",
     },
@@ -67,8 +67,8 @@ export default function Contact() {
     <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-primary/5 via-accent/3 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-accent/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-primary/5 via-secondary/3 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-warm/5 to-transparent rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-4xl mx-auto">
@@ -85,15 +85,15 @@ export default function Contact() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="text-sm font-mono text-primary tracking-wider uppercase">06</span>
-            <span className="w-12 h-px bg-gradient-to-r from-primary to-transparent" />
+            <span className="w-12 h-px bg-gradient-to-r from-transparent to-warm" />
+            <span className="text-sm font-mono text-warm tracking-wider uppercase">06</span>
             <span className="text-sm font-mono text-primary tracking-wider uppercase">Get in touch</span>
-            <span className="w-12 h-px bg-gradient-to-l from-primary to-transparent" />
+            <span className="w-12 h-px bg-gradient-to-l from-transparent to-primary" />
           </motion.div>
           
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Let's{" "}
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-secondary to-warm bg-clip-text text-transparent">
               Connect
             </span>
           </h2>
@@ -182,12 +182,14 @@ export default function Contact() {
         >
           <motion.a
             href="mailto:hazelwu@ad.unc.edu"
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-xl font-medium shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary via-secondary to-accent text-primary-foreground rounded-xl font-medium shadow-lg hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 overflow-hidden relative"
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
-            <Send className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            Send me an email
+            {/* Shine effect */}
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            <Send className="w-5 h-5 transition-transform group-hover:translate-x-1 relative z-10" />
+            <span className="relative z-10">Send me an email</span>
           </motion.a>
         </motion.div>
       </div>

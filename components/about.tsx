@@ -34,12 +34,15 @@ export default function About() {
     },
   }
 
-  // Words to highlight in the text
-  const highlightWords = ["curiosity", "product", "AI tools", "health systems", "data skills", "product instinct"]
+  // Words to highlight - green for tech, orange for personal qualities
+  const greenHighlights = ["product", "AI tools", "health systems", "data skills", "product instinct"]
+  const orangeHighlights = ["curiosity", "energy", "fresh eyes"]
 
   const renderHighlightedText = (text: string) => {
     let result = text
-    highlightWords.forEach(word => {
+    const allHighlights = [...greenHighlights, ...orangeHighlights]
+    
+    allHighlights.forEach(word => {
       result = result.replace(
         new RegExp(`(${word})`, 'gi'),
         '|||$1|||'
@@ -47,12 +50,15 @@ export default function About() {
     })
     
     return result.split('|||').map((part, i) => {
-      const isHighlight = highlightWords.some(w => w.toLowerCase() === part.toLowerCase())
-      return isHighlight ? (
-        <span key={i} className="text-primary font-medium">{part}</span>
-      ) : (
-        <span key={i}>{part}</span>
-      )
+      const isGreen = greenHighlights.some(w => w.toLowerCase() === part.toLowerCase())
+      const isOrange = orangeHighlights.some(w => w.toLowerCase() === part.toLowerCase())
+      
+      if (isGreen) {
+        return <span key={i} className="text-primary font-semibold">{part}</span>
+      } else if (isOrange) {
+        return <span key={i} className="text-warm font-semibold">{part}</span>
+      }
+      return <span key={i}>{part}</span>
     })
   }
 
@@ -61,16 +67,17 @@ export default function About() {
       ref={sectionRef}
       id="about" 
       className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      style={{ position: 'relative' }}
     >
       {/* Background elements */}
       <div className="absolute inset-0 -z-10">
         <motion.div 
           style={{ opacity }}
-          className="absolute top-20 left-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/8 via-accent/5 to-transparent rounded-full blur-3xl"
+          className="absolute top-20 left-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/8 via-secondary/5 to-transparent rounded-full blur-3xl"
         />
         <motion.div 
           style={{ opacity }}
-          className="absolute bottom-20 right-0 w-[500px] h-[500px] bg-gradient-to-tl from-accent/8 via-primary/5 to-transparent rounded-full blur-3xl"
+          className="absolute bottom-20 right-0 w-[500px] h-[500px] bg-gradient-to-tl from-warm/8 via-accent/5 to-transparent rounded-full blur-3xl"
         />
       </div>
 
@@ -88,18 +95,18 @@ export default function About() {
               whileHover={{ x: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <span className="text-sm font-mono text-primary tracking-wider uppercase">01</span>
-              <span className="w-12 h-px bg-gradient-to-r from-primary to-transparent" />
+              <span className="text-sm font-mono text-warm tracking-wider uppercase">01</span>
+              <span className="w-12 h-px bg-gradient-to-r from-warm via-primary to-transparent" />
             </motion.div>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance">
               About{" "}
-              <span className="relative">
-                <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+              <span className="relative inline-block">
+                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                   Me
                 </span>
                 <motion.span
-                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
+                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-primary via-accent to-warm rounded-full"
                   initial={{ width: 0 }}
                   whileInView={{ width: "100%" }}
                   viewport={{ once: true }}
@@ -112,22 +119,24 @@ export default function About() {
           {/* Content with highlighted keywords */}
           <motion.div variants={itemVariants} className="space-y-8">
             <motion.div 
-              className="relative p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-colors duration-300"
-              whileHover={{ scale: 1.01 }}
+              className="relative p-6 rounded-2xl bg-card/60 backdrop-blur-sm border border-border hover:border-primary/30 transition-colors duration-300 group"
+              whileHover={{ scale: 1.01, x: 4 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <div className="absolute top-0 left-6 w-1 h-full bg-gradient-to-b from-primary via-accent to-transparent rounded-full" />
+              <div className="absolute top-0 left-6 w-1 h-full bg-gradient-to-b from-primary via-secondary to-transparent rounded-full" />
+              <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gradient-to-br from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               <p className="text-lg text-muted-foreground leading-relaxed pl-6">
                 {renderHighlightedText("I keep coming back to one question: how do we use technology to make healthcare actually work better for people? That curiosity has taken me from analyzing telehealth product at a health system to designing go-to-market strategy for a smart mobility device to building internal AI tools at a digital health startup. I like starting with messy, real-world problems and figuring out what to build.")}
               </p>
             </motion.div>
 
             <motion.div 
-              className="relative p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-colors duration-300"
-              whileHover={{ scale: 1.01 }}
+              className="relative p-6 rounded-2xl bg-card/60 backdrop-blur-sm border border-border hover:border-warm/30 transition-colors duration-300 group"
+              whileHover={{ scale: 1.01, x: 4 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <div className="absolute top-0 left-6 w-1 h-full bg-gradient-to-b from-accent via-primary to-transparent rounded-full" />
+              <div className="absolute top-0 left-6 w-1 h-full bg-gradient-to-b from-warm via-warm-light to-transparent rounded-full" />
+              <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gradient-to-br from-warm/10 to-warm-light/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               <p className="text-lg text-muted-foreground leading-relaxed pl-6">
                 {renderHighlightedText("My background sits at the intersection of health systems knowledge, data skills, and product instinct. I'm still early in my career, and that's exciting — I bring fresh eyes, energy, and a genuine willingness to learn. When I'm not working, you'll find me hiking or writing.")}
               </p>
@@ -139,14 +148,17 @@ export default function About() {
             variants={itemVariants}
             className="mt-12 flex items-center gap-4"
           >
-            <div className="flex gap-1">
+            <div className="flex gap-1.5">
               {[0, 1, 2].map((i) => (
                 <motion.div
                   key={i}
-                  className="w-2 h-2 rounded-full bg-primary/30"
+                  className="w-2 h-2 rounded-full"
+                  style={{
+                    background: i === 1 ? 'var(--warm)' : 'var(--primary)'
+                  }}
                   animate={{ 
-                    scale: [1, 1.2, 1],
-                    backgroundColor: ["var(--primary)", "var(--accent)", "var(--primary)"]
+                    scale: [1, 1.3, 1],
+                    opacity: [0.5, 1, 0.5]
                   }}
                   transition={{ 
                     duration: 2, 
@@ -157,7 +169,7 @@ export default function About() {
                 />
               ))}
             </div>
-            <span className="text-sm text-muted-foreground">Always learning, always building</span>
+            <span className="text-sm text-muted-foreground italic">Always learning, always building</span>
           </motion.div>
         </motion.div>
       </div>

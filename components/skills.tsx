@@ -9,29 +9,33 @@ export default function Skills() {
       title: "Product & Strategy",
       icon: Lightbulb,
       skills: ["Product Management", "PRD & Requirements Writing", "Roadmap Prioritization", "Agile/Scrum", "GTM Strategy", "Competitive Analysis", "Pricing & Financial Modeling", "Stakeholder Alignment"],
-      gradient: "from-primary to-accent",
-      iconBg: "bg-gradient-to-br from-primary to-primary/80",
+      gradient: "from-primary to-secondary",
+      iconBg: "bg-gradient-to-br from-primary to-secondary",
+      dotColor: "bg-primary",
     },
     {
       title: "User Research & Insights",
       icon: Users,
       skills: ["User Interviews", "Persona Development", "JTBD Framework", "Qualitative Synthesis", "Empathy Mapping", "Usability Evaluation", "Survey Design"],
-      gradient: "from-accent to-primary",
-      iconBg: "bg-gradient-to-br from-accent to-accent/80",
+      gradient: "from-secondary to-accent",
+      iconBg: "bg-gradient-to-br from-secondary to-accent",
+      dotColor: "bg-secondary",
     },
     {
       title: "Data & Analytics",
       icon: BarChart3,
       skills: ["SQL", "Python", "Tableau", "Salesforce", "Excel/VBA", "CRM & Funnel Analytics", "A/B Testing Logic", "KPI Design"],
-      gradient: "from-[#f59e0b] to-[#d97706]",
-      iconBg: "bg-gradient-to-br from-[#f59e0b] to-[#d97706]",
+      gradient: "from-warm to-warm-light",
+      iconBg: "bg-gradient-to-br from-warm to-warm-light",
+      dotColor: "bg-warm",
     },
     {
       title: "Healthcare & Domain",
       icon: HeartPulse,
       skills: ["EHR Systems (Epic)", "Telehealth Workflows", "Health Policy & Regulation", "Population Health", "Digital Health Interventions", "Clinical-Technical Translation", "Health Equity"],
-      gradient: "from-secondary to-primary",
-      iconBg: "bg-gradient-to-br from-secondary to-primary",
+      gradient: "from-accent to-primary",
+      iconBg: "bg-gradient-to-br from-accent to-primary",
+      dotColor: "bg-accent",
     },
   ]
 
@@ -61,7 +65,7 @@ export default function Skills() {
       {/* Background decoration */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-gradient-to-bl from-primary/5 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-accent/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-warm/5 to-transparent rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto">
@@ -78,12 +82,12 @@ export default function Skills() {
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="text-sm font-mono text-primary tracking-wider uppercase">02</span>
-            <span className="w-12 h-px bg-gradient-to-r from-primary to-transparent" />
+            <span className="text-sm font-mono text-warm tracking-wider uppercase">02</span>
+            <span className="w-12 h-px bg-gradient-to-r from-warm via-primary to-transparent" />
           </motion.div>
           
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               Skills
             </span>
           </h2>
@@ -149,7 +153,7 @@ export default function Skills() {
                         >
                           <ChevronRight className="w-3 h-3 text-primary opacity-0 group-hover/item:opacity-100 -translate-x-1 group-hover/item:translate-x-0 transition-all" />
                           <span className="flex items-center gap-2">
-                            <span className={`w-1 h-1 rounded-full bg-gradient-to-r ${category.gradient}`} aria-hidden="true" />
+                            <span className={`w-1.5 h-1.5 rounded-full ${category.dotColor}`} aria-hidden="true" />
                             {skill}
                           </span>
                         </motion.li>

@@ -11,7 +11,8 @@ export default function Experience() {
       period: "Sep 2025 – Present",
       location: "Chapel Hill, NC",
       description: "AI workflow product requirements, knowledge management platform evaluation, agile execution across clinical and engineering teams.",
-      gradient: "from-primary to-accent",
+      gradient: "from-primary to-secondary",
+      dotColor: "bg-primary",
       isCurrent: true,
     },
     {
@@ -20,7 +21,8 @@ export default function Experience() {
       period: "May 2025 – Feb 2026",
       location: "Singapore (Remote)",
       description: "End-to-end user research design, 200+ stakeholder interviews, beta analytics, pricing and positioning strategy.",
-      gradient: "from-[#f59e0b] to-[#d97706]",
+      gradient: "from-warm to-warm-light",
+      dotColor: "bg-warm",
       isCurrent: false,
     },
     {
@@ -29,7 +31,8 @@ export default function Experience() {
       period: "Jun 2025 – Aug 2025",
       location: "Washington, D.C.",
       description: "End-to-end program operations for 6 Brookings research portfolios, centralized knowledge repository design, and driver-based budget modeling for multi-million-dollar programs.",
-      gradient: "from-accent to-primary",
+      gradient: "from-secondary to-accent",
+      dotColor: "bg-secondary",
       isCurrent: false,
     },
     {
@@ -38,7 +41,8 @@ export default function Experience() {
       period: "May 2024 – Jul 2024",
       location: "Grand Rapids, MI",
       description: "Telehealth equity gap analysis, community intervention design, population health KPI framework.",
-      gradient: "from-secondary to-primary",
+      gradient: "from-accent to-primary",
+      dotColor: "bg-accent",
       isCurrent: false,
     },
   ]
@@ -67,7 +71,7 @@ export default function Experience() {
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-accent/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-warm/5 to-transparent rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-4xl mx-auto">
@@ -84,13 +88,13 @@ export default function Experience() {
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="text-sm font-mono text-primary tracking-wider uppercase">05</span>
-            <span className="w-12 h-px bg-gradient-to-r from-primary to-transparent" />
+            <span className="text-sm font-mono text-warm tracking-wider uppercase">05</span>
+            <span className="w-12 h-px bg-gradient-to-r from-warm via-primary to-transparent" />
           </motion.div>
           
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Professional{" "}
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               Experience
             </span>
           </h2>
@@ -107,8 +111,8 @@ export default function Experience() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {/* Vertical timeline line */}
-          <div className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-primary via-accent to-muted rounded-full" />
+          {/* Vertical timeline line with gradient */}
+          <div className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-primary via-warm to-accent rounded-full" />
 
           {experiences.map((exp, index) => (
             <motion.div 
@@ -122,7 +126,7 @@ export default function Experience() {
                   <Briefcase className="w-3 h-3 text-white" />
                   {exp.isCurrent && (
                     <>
-                      <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-30" />
+                      <span className={`absolute inset-0 rounded-full ${exp.dotColor} animate-ping opacity-30`} />
                       <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-background" />
                     </>
                   )}
@@ -161,7 +165,7 @@ export default function Experience() {
 
                   {/* Location */}
                   <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-4">
-                    <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
+                    <MapPin className="w-3.5 h-3.5 text-warm" aria-hidden="true" />
                     <span>{exp.location}</span>
                   </div>
 

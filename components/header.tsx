@@ -61,7 +61,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
       <motion.header 
         className={`sticky top-0 z-40 transition-all duration-300 ${
           scrolled 
-            ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-sm" 
+            ? "bg-background/95 backdrop-blur-xl border-b border-border shadow-sm" 
             : "bg-transparent"
         }`}
         initial={{ y: -100 }}
@@ -70,19 +70,19 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo with hover effect */}
+            {/* Logo with hover effect - green to orange gradient */}
             <Link
               href="/"
               className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary focus:rounded group"
             >
               <motion.div 
-                className="relative w-9 h-9 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center overflow-hidden"
-                whileHover={{ scale: 1.05 }}
+                className="relative w-9 h-9 bg-gradient-to-br from-primary via-secondary to-accent rounded-xl flex items-center justify-center overflow-hidden shadow-md"
+                whileHover={{ scale: 1.05, rotate: 3 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <span className="text-primary-foreground font-bold text-sm relative z-10">HW</span>
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-0 bg-gradient-to-br from-warm to-warm-light opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
               </motion.div>
               <span className="font-bold text-lg hidden sm:inline text-foreground group-hover:text-primary transition-colors">
@@ -96,11 +96,14 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:rounded"
+                  className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:rounded group"
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <span className="animated-underline">{link.label}</span>
+                  <span className="relative">
+                    {link.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
+                  </span>
                 </motion.a>
               ))}
               
@@ -108,12 +111,15 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
               <div ref={casesRef} className="relative">
                 <motion.button
                   onClick={() => setIsCasesOpen(!isCasesOpen)}
-                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:rounded"
+                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:rounded group"
                   aria-expanded={isCasesOpen}
                   aria-haspopup="true"
                   whileHover={{ y: -2 }}
                 >
-                  <span className="animated-underline">Cases</span>
+                  <span className="relative">
+                    Cases
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-warm to-warm-light group-hover:w-full transition-all duration-300" />
+                  </span>
                   <motion.span
                     animate={{ rotate: isCasesOpen ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
@@ -125,7 +131,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                 <AnimatePresence>
                   {isCasesOpen && (
                     <motion.div 
-                      className="absolute top-full left-0 mt-2 w-44 bg-card/95 backdrop-blur-xl border border-border rounded-xl shadow-lg overflow-hidden"
+                      className="absolute top-full left-0 mt-2 w-48 bg-card/98 backdrop-blur-xl border border-border rounded-xl shadow-lg overflow-hidden"
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -135,15 +141,15 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                         <Link
                           key={link.href}
                           href={link.href}
-                          className="block px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-colors border-b border-border/50 last:border-b-0"
+                          className="block px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-primary/5 transition-colors border-b border-border/50 last:border-b-0 group"
                           onClick={() => setIsCasesOpen(false)}
                         >
                           <motion.span
                             initial={{ x: 0 }}
                             whileHover={{ x: 4 }}
-                            className="flex items-center gap-2"
+                            className="flex items-center gap-3"
                           >
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+                            <span className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent group-hover:scale-125 transition-transform" />
                             {link.label}
                           </motion.span>
                         </Link>
@@ -157,11 +163,14 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:rounded"
+                  className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:rounded group"
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <span className="animated-underline">{link.label}</span>
+                  <span className="relative">
+                    {link.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
+                  </span>
                 </motion.a>
               ))}
             </nav>
@@ -194,7 +203,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Moon className="w-5 h-5" />
+                      <Moon className="w-5 h-5 text-primary" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -259,7 +268,8 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                 ))}
                 
                 {/* Cases section in mobile */}
-                <div className="px-4 py-2 text-xs font-semibold text-primary uppercase tracking-wider">
+                <div className="px-4 py-2 text-xs font-semibold text-primary uppercase tracking-wider flex items-center gap-2">
+                  <span className="w-6 h-px bg-gradient-to-r from-primary to-transparent" />
                   Cases
                 </div>
                 {caseLinks.map((link, index) => (
@@ -269,7 +279,7 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                     className="px-6 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-primary flex items-center gap-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary to-accent" />
                     {link.label}
                   </Link>
                 ))}

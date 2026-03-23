@@ -102,18 +102,21 @@ export default function Hero() {
         className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 relative overflow-hidden"
         id="main-content"
       >
-        {/* Subtle grid pattern */}
+        {/* Subtle decorative elements */}
         <div className="absolute inset-0 -z-10" aria-hidden="true">
           <div 
-            className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+            className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
             style={{
               backgroundImage: `
                 linear-gradient(to right, var(--foreground) 1px, transparent 1px),
                 linear-gradient(to bottom, var(--foreground) 1px, transparent 1px)
               `,
-              backgroundSize: '60px 60px',
+              backgroundSize: '80px 80px',
             }}
           />
+          {/* Decorative corner elements */}
+          <div className="absolute top-32 left-8 w-24 h-24 border-l-2 border-t-2 border-primary/20 rounded-tl-3xl" />
+          <div className="absolute bottom-32 right-8 w-24 h-24 border-r-2 border-b-2 border-warm/20 rounded-br-3xl" />
         </div>
 
         <motion.div
@@ -122,13 +125,18 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          {/* Floating badge */}
+          {/* Floating badge with warm accent */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary"
+            className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-gradient-to-r from-primary/10 to-warm/10 border border-primary/20 text-sm"
           >
-            <Sparkles className="w-4 h-4" />
-            <span>Open to opportunities</span>
+            <motion.span
+              animate={{ rotate: [0, 15, -15, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Sparkles className="w-4 h-4 text-warm" />
+            </motion.span>
+            <span className="text-foreground/80 font-medium">Open to opportunities</span>
           </motion.div>
 
           {/* Animated name with letter-by-letter reveal */}
@@ -144,8 +152,9 @@ export default function Hero() {
                   variants={letterVariants}
                   initial="hidden"
                   animate="visible"
-                  className="bg-gradient-to-br from-foreground via-foreground to-primary bg-clip-text text-transparent hover:text-primary transition-colors duration-300"
+                  className="text-foreground hover:text-primary transition-colors duration-300"
                   style={{ display: letter === " " ? "inline" : "inline-block" }}
+                  whileHover={{ y: -4, scale: 1.1 }}
                 >
                   {letter === " " ? "\u00A0" : letter}
                 </motion.span>
@@ -153,12 +162,12 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          {/* Tagline with gradient */}
+          {/* Tagline with gradient - green to orange */}
           <motion.p
             variants={itemVariants}
             className="text-xl sm:text-2xl mb-4 font-semibold"
           >
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-secondary to-warm bg-clip-text text-transparent">
               Health tech, human-centered.
             </span>
             <span className="text-muted-foreground"> Product, data, and strategy.</span>
@@ -177,7 +186,7 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <MagneticButton
               href="#cases"
-              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-xl font-medium overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(13,148,136,0.4)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-xl font-medium overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(45,106,79,0.4)] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
             >
               {/* Shine effect */}
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
@@ -190,11 +199,11 @@ export default function Hero() {
             <MagneticButton
               href="/ShuyanWu_Resume_PM_0218.pdf"
               download
-              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-medium overflow-hidden bg-card border-2 border-primary/30 hover:border-primary transition-all duration-300 hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-medium overflow-hidden bg-card border-2 border-warm/30 hover:border-warm transition-all duration-300 hover:bg-warm/5 focus:outline-none focus:ring-2 focus:ring-warm focus:ring-offset-2 focus:ring-offset-background"
             >
               <span className="relative flex items-center gap-2 text-foreground">
                 Download Resume
-                <Download className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" aria-hidden="true" />
+                <Download className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 text-warm" aria-hidden="true" />
               </span>
             </MagneticButton>
           </motion.div>
@@ -209,9 +218,13 @@ export default function Hero() {
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2"
+              className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-2"
             >
-              <motion.div className="w-1.5 h-1.5 rounded-full bg-primary" />
+              <motion.div 
+                className="w-1.5 h-1.5 rounded-full bg-gradient-to-b from-primary to-warm"
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
             </motion.div>
           </motion.div>
         </motion.div>

@@ -44,9 +44,11 @@ export function CaseStudyModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className={`${sizeClasses[size]} ${size === "full" ? "overflow-y-auto" : ""}`}>
+      <DialogContent className={`${sizeClasses[size]} ${size === "full" ? "overflow-y-auto" : ""} border-primary/20`}>
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
+          <DialogTitle className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            {title}
+          </DialogTitle>
           <DialogDescription className={narrative ? "" : "sr-only"}>
             {narrative || `Details for ${title}`}
           </DialogDescription>
@@ -56,7 +58,8 @@ export function CaseStudyModal({
           {points && points.length > 0 && (
             <div className="space-y-2">
               {points.map((point) => (
-                <p key={point} className="text-sm text-foreground leading-relaxed">
+                <p key={point} className="text-sm text-foreground leading-relaxed flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
                   {point}
                 </p>
               ))}
@@ -67,7 +70,7 @@ export function CaseStudyModal({
             <iframe
               title={iframe.title}
               src={iframe.src}
-              className="w-full min-h-[320px] border-0"
+              className="w-full min-h-[320px] border-0 rounded-lg"
             />
           ) : null}
 
