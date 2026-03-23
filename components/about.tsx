@@ -1,17 +1,8 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion"
 
 export default function About() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  })
-  
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.3], [100, 0])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -64,21 +55,13 @@ export default function About() {
 
   return (
     <section 
-      ref={sectionRef}
       id="about" 
       className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
-      style={{ position: 'relative' }}
     >
       {/* Background elements */}
       <div className="absolute inset-0 -z-10">
-        <motion.div 
-          style={{ opacity }}
-          className="absolute top-20 left-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/8 via-secondary/5 to-transparent rounded-full blur-3xl"
-        />
-        <motion.div 
-          style={{ opacity }}
-          className="absolute bottom-20 right-0 w-[500px] h-[500px] bg-gradient-to-tl from-warm/8 via-accent/5 to-transparent rounded-full blur-3xl"
-        />
+        <div className="absolute top-20 left-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/8 via-secondary/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-0 w-[500px] h-[500px] bg-gradient-to-tl from-warm/8 via-accent/5 to-transparent rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-3xl mx-auto relative z-10">

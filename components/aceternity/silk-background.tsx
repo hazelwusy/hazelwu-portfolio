@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 
 export const SilkBackground = ({
@@ -11,43 +10,39 @@ export const SilkBackground = ({
   children: React.ReactNode
   className?: string
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  })
+  const { scrollYProgress } = useScroll()
   
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 150])
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -100])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3])
 
   return (
-    <div ref={containerRef} className={`relative w-full overflow-hidden ${className}`} style={{ position: 'relative' }}>
+    <div className={`relative w-full overflow-hidden ${className}`}>
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {/* Main flowing gradient orbs with green and orange */}
+        {/* Soft pastel gradient orbs - sage green and butter yellow */}
         <motion.div
-          className="absolute -top-20 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary/15 via-secondary/10 to-transparent rounded-full blur-[100px]"
+          className="absolute -top-20 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-primary/20 via-secondary/15 to-transparent rounded-full blur-[120px]"
           style={{ y: y1, opacity }}
           animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, 0],
+            scale: [1, 1.08, 1],
+            rotate: [0, 3, 0],
           }}
           transition={{
-            duration: 15,
+            duration: 20,
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
         />
         
         <motion.div
-          className="absolute top-1/3 -right-20 w-[400px] h-[400px] bg-gradient-to-bl from-warm/12 via-warm-light/8 to-transparent rounded-full blur-[80px]"
+          className="absolute top-1/3 -right-20 w-[500px] h-[500px] bg-gradient-to-bl from-accent/20 via-warm/15 to-transparent rounded-full blur-[100px]"
           style={{ y: y2, opacity }}
           animate={{
             scale: [1, 0.95, 1],
-            x: [0, -30, 0],
+            x: [0, -20, 0],
           }}
           transition={{
-            duration: 12,
+            duration: 16,
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
             delay: 2,
@@ -55,14 +50,14 @@ export const SilkBackground = ({
         />
         
         <motion.div
-          className="absolute bottom-1/4 left-1/3 w-[450px] h-[450px] bg-gradient-to-tr from-accent/10 via-primary/8 to-transparent rounded-full blur-[90px]"
+          className="absolute bottom-1/4 left-1/3 w-[550px] h-[550px] bg-gradient-to-tr from-warm-light/15 via-primary/10 to-transparent rounded-full blur-[110px]"
           style={{ opacity }}
           animate={{
-            scale: [1, 1.05, 1],
-            y: [0, 40, 0],
+            scale: [1, 1.04, 1],
+            y: [0, 30, 0],
           }}
           transition={{
-            duration: 18,
+            duration: 22,
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
             delay: 1,
