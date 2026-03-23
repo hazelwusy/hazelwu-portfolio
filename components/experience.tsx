@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Calendar } from "lucide-react"
+import { Calendar, MapPin, Briefcase } from "lucide-react"
 
 export default function Experience() {
   const experiences = [
@@ -11,6 +11,8 @@ export default function Experience() {
       period: "Sep 2025 – Present",
       location: "Chapel Hill, NC",
       description: "AI workflow product requirements, knowledge management platform evaluation, agile execution across clinical and engineering teams.",
+      gradient: "from-primary to-accent",
+      isCurrent: true,
     },
     {
       title: "Product Strategy (GTM) Intern",
@@ -18,6 +20,8 @@ export default function Experience() {
       period: "May 2025 – Feb 2026",
       location: "Singapore (Remote)",
       description: "End-to-end user research design, 200+ stakeholder interviews, beta analytics, pricing and positioning strategy.",
+      gradient: "from-[#f59e0b] to-[#d97706]",
+      isCurrent: false,
     },
     {
       title: "Research and Project Coordination Intern",
@@ -25,6 +29,8 @@ export default function Experience() {
       period: "Jun 2025 – Aug 2025",
       location: "Washington, D.C.",
       description: "End-to-end program operations for 6 Brookings research portfolios, centralized knowledge repository design, and driver-based budget modeling for multi-million-dollar programs.",
+      gradient: "from-accent to-primary",
+      isCurrent: false,
     },
     {
       title: "Strategy & Operations Intern",
@@ -32,6 +38,8 @@ export default function Experience() {
       period: "May 2024 – Jul 2024",
       location: "Grand Rapids, MI",
       description: "Telehealth equity gap analysis, community intervention design, population health KPI framework.",
+      gradient: "from-secondary to-primary",
+      isCurrent: false,
     },
   ]
 
@@ -46,66 +54,122 @@ export default function Experience() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, x: -30 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.6 },
+      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
     },
   }
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-secondary/10">
+    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-accent/5 to-transparent rounded-full blur-3xl" />
+      </div>
+
       <div className="max-w-4xl mx-auto">
+        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-balance">
+          <motion.div
+            className="inline-flex items-center gap-3 mb-4"
+            whileHover={{ x: 5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <span className="text-sm font-mono text-primary tracking-wider uppercase">05</span>
+            <span className="w-12 h-px bg-gradient-to-r from-primary to-transparent" />
+          </motion.div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Professional{" "}
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               Experience
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full" />
+          <p className="text-muted-foreground text-lg max-w-2xl">
+            Building expertise across product management, strategy, and health tech operations.
+          </p>
         </motion.div>
 
+        {/* Timeline */}
         <motion.div
-          className="space-y-8"
+          className="relative"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
+          {/* Vertical timeline line */}
+          <div className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-primary via-accent to-muted rounded-full" />
+
           {experiences.map((exp, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <motion.div
-                className="relative pl-8 pb-8 border-l-2 border-primary/30 last:pb-0 hover:border-primary transition-colors"
-                whileHover={{ paddingLeft: 32 }}
-              >
-                <motion.div
-                  className="absolute -left-3 top-0 w-4 h-4 bg-primary rounded-full"
-                  aria-hidden="true"
-                  whileHover={{ scale: 1.3 }}
-                />
-
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
-                  <div>
-                    <h3 className="font-bold text-lg text-foreground">{exp.title}</h3>
-                    <p className="text-primary font-medium">{exp.company}</p>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4" aria-hidden="true" />
-                    <time>{exp.period}</time>
-                  </div>
+            <motion.div 
+              key={index} 
+              variants={itemVariants}
+              className="relative pl-10 pb-12 last:pb-0"
+            >
+              {/* Timeline dot with pulse for current */}
+              <div className="absolute left-0 top-1">
+                <div className={`relative w-6 h-6 rounded-full bg-gradient-to-br ${exp.gradient} flex items-center justify-center shadow-lg`}>
+                  <Briefcase className="w-3 h-3 text-white" />
+                  {exp.isCurrent && (
+                    <>
+                      <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-30" />
+                      <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-background" />
+                    </>
+                  )}
                 </div>
+              </div>
 
-                <p className="text-sm text-muted-foreground mb-4">{exp.location}</p>
+              {/* Card */}
+              <motion.div
+                className="group relative bg-card rounded-2xl border border-border p-6 hover:border-primary/30 transition-all duration-300"
+                whileHover={{ 
+                  x: 8,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
+              >
+                {/* Hover glow */}
+                <div className={`absolute -inset-px rounded-2xl bg-gradient-to-br ${exp.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl`} />
+                
+                <div className="relative z-10">
+                  {/* Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
+                    <div>
+                      <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">
+                        {exp.title}
+                      </h3>
+                      <p className={`font-semibold bg-gradient-to-r ${exp.gradient} bg-clip-text text-transparent`}>
+                        {exp.company}
+                      </p>
+                    </div>
+                    
+                    {/* Time badge */}
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted text-xs text-muted-foreground whitespace-nowrap">
+                      <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
+                      <time>{exp.period}</time>
+                    </div>
+                  </div>
 
-                <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
+                  {/* Location */}
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-4">
+                    <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>{exp.location}</span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {exp.description}
+                  </p>
+                </div>
               </motion.div>
             </motion.div>
           ))}
