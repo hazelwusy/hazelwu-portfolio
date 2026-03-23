@@ -93,7 +93,7 @@ export default function WellCasePage() {
           className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance"
         >
           Scaling Care Navigation:{" "}
-          <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+          <span className="text-primary">
             AI Workflow Automation & Knowledge Management
           </span>
         </motion.h1>
@@ -117,7 +117,7 @@ export default function WellCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
-            <span className="w-8 h-px bg-gradient-to-r from-primary to-transparent" />
+            <span className="w-8 h-px bg-primary/50" />
             The Challenge
           </h2>
           <p className="text-muted-foreground leading-relaxed">
@@ -133,7 +133,7 @@ export default function WellCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-gradient-to-r from-secondary to-transparent" />
+            <span className="w-8 h-px bg-secondary/50" />
             What I Did
           </h2>
           
@@ -172,7 +172,7 @@ export default function WellCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-gradient-to-r from-accent to-transparent" />
+            <span className="w-8 h-px bg-accent/50" />
             Portfolio Artifacts
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -210,7 +210,7 @@ export default function WellCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-gradient-to-r from-warm to-transparent" />
+            <span className="w-8 h-px bg-warm/50" />
             Impact
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -220,12 +220,12 @@ export default function WellCasePage() {
                 className="p-4 bg-card border border-border rounded-xl text-center hover:border-primary/30 transition-colors"
                 whileHover={{ y: -4 }}
               >
-                <div className={`text-2xl font-bold mb-1 bg-gradient-to-r ${
-                  i === 0 ? 'from-primary to-secondary' :
-                  i === 1 ? 'from-warm to-warm-light' :
-                  i === 2 ? 'from-secondary to-accent' :
-                  'from-accent to-primary'
-                } bg-clip-text text-transparent`}>{metric.value}</div>
+                <div className={`text-2xl font-bold mb-1 ${
+                  i === 0 ? 'text-primary' :
+                  i === 1 ? 'text-warm' :
+                  i === 2 ? 'text-secondary' :
+                  'text-accent'
+                }`}>{metric.value}</div>
                 <div className="text-sm text-muted-foreground">{metric.label}</div>
               </motion.div>
             ))}
@@ -240,11 +240,10 @@ export default function WellCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-gradient-to-r from-primary via-warm to-transparent" />
+            <span className="w-8 h-px bg-primary/50" />
             What I Learned
           </h2>
-          <blockquote className="relative border-l-4 border-gradient pl-6 py-2 italic text-muted-foreground text-lg bg-gradient-to-r from-card to-transparent rounded-r-xl">
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-warm to-accent rounded-full" />
+          <blockquote className="relative border-l-4 border-primary/30 pl-6 py-2 italic text-muted-foreground text-lg bg-muted/30 rounded-r-xl">
             {"\"The best product work I did here wasn't the PRD — it was learning to translate between clinical language and engineering language until everyone was building the same thing.\""}
           </blockquote>
         </motion.section>

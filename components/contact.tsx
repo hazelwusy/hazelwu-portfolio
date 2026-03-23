@@ -31,7 +31,7 @@ export default function Contact() {
       label: "Email",
       value: "hazelwu@ad.unc.edu",
       href: "mailto:hazelwu@ad.unc.edu",
-      gradient: "from-primary to-secondary",
+      iconBg: "bg-primary",
       description: "Best way to reach me",
     },
     {
@@ -39,7 +39,7 @@ export default function Contact() {
       label: "LinkedIn",
       value: "Connect with me",
       href: "https://www.linkedin.com/in/hazel-w-a23593239/",
-      gradient: "from-[#0077b5] to-[#00a0dc]",
+      iconBg: "bg-[#0077b5]",
       external: true,
       description: "Professional network",
     },
@@ -48,7 +48,7 @@ export default function Contact() {
       label: "GitHub",
       value: "View my work",
       href: "https://github.com/hazelwusy",
-      gradient: "from-foreground/80 to-foreground/60",
+      iconBg: "bg-secondary",
       external: true,
       description: "Code & projects",
     },
@@ -57,7 +57,7 @@ export default function Contact() {
       label: "Location",
       value: "Chapel Hill, NC",
       href: "",
-      gradient: "from-warm to-warm-light",
+      iconBg: "bg-warm",
       isText: true,
       description: "Open to relocation",
     },
@@ -129,7 +129,7 @@ export default function Contact() {
                   <div className="relative z-10 p-6 text-center">
                     {/* Icon */}
                     <motion.div
-                      className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center mx-auto mb-4 shadow-md"
+                      className={`w-14 h-14 rounded-2xl ${method.iconBg} flex items-center justify-center mx-auto mb-4 shadow-md`}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     >

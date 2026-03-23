@@ -88,7 +88,7 @@ export default function StruttCasePage() {
           className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance"
         >
           From Medical Device to Lifestyle Brand:{" "}
-          <span className="bg-gradient-to-r from-warm via-warm-light to-primary bg-clip-text text-transparent">
+          <span className="text-warm">
             Global GTM & User Empathy Mapping
           </span>
         </motion.h1>
@@ -112,7 +112,7 @@ export default function StruttCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
-            <span className="w-8 h-px bg-gradient-to-r from-warm to-transparent" />
+            <span className="w-8 h-px bg-warm/50" />
             The Challenge
           </h2>
           <p className="text-muted-foreground leading-relaxed">
@@ -128,7 +128,7 @@ export default function StruttCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-gradient-to-r from-primary to-transparent" />
+            <span className="w-8 h-px bg-primary/50" />
             What I Did
           </h2>
           
@@ -183,7 +183,7 @@ export default function StruttCasePage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-            <span className="w-8 h-px bg-gradient-to-r from-secondary to-transparent" />
+            <span className="w-8 h-px bg-secondary/50" />
             Portfolio Artifacts
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
