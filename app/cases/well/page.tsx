@@ -93,7 +93,7 @@ export default function WellCasePage() {
           className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance"
         >
           Scaling Care Navigation:{" "}
-          <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+          <span className="text-primary">
             AI Workflow Automation & Knowledge Management
           </span>
         </motion.h1>
@@ -220,12 +220,12 @@ export default function WellCasePage() {
                 className="p-4 bg-card border border-border rounded-xl text-center hover:border-primary/30 transition-colors"
                 whileHover={{ y: -4 }}
               >
-                <div className={`text-2xl font-bold mb-1 bg-gradient-to-r ${
-                  i === 0 ? 'from-primary to-secondary' :
-                  i === 1 ? 'from-warm to-warm-light' :
-                  i === 2 ? 'from-secondary to-accent' :
-                  'from-accent to-primary'
-                } bg-clip-text text-transparent`}>{metric.value}</div>
+                <div className={`text-2xl font-bold mb-1 ${
+                  i === 0 ? 'text-primary' :
+                  i === 1 ? 'text-warm' :
+                  i === 2 ? 'text-secondary' :
+                  'text-accent'
+                }`}>{metric.value}</div>
                 <div className="text-sm text-muted-foreground">{metric.label}</div>
               </motion.div>
             ))}

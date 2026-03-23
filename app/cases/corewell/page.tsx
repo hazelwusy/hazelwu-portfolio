@@ -83,7 +83,7 @@ export default function CorewellCasePage() {
           className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance"
         >
           Bridging the Digital Divide:{" "}
-          <span className="bg-gradient-to-r from-secondary via-accent to-primary bg-clip-text text-transparent">
+          <span className="text-secondary">
             Strategic Interventions for Health Equity
           </span>
         </motion.h1>
@@ -225,12 +225,12 @@ export default function CorewellCasePage() {
                 className="p-4 bg-card border border-border rounded-xl text-center hover:border-secondary/30 transition-colors"
                 whileHover={{ y: -4 }}
               >
-                <div className={`text-2xl font-bold mb-1 bg-gradient-to-r ${
-                  i === 0 ? 'from-secondary to-accent' :
-                  i === 1 ? 'from-accent to-primary' :
-                  i === 2 ? 'from-primary to-secondary' :
-                  'from-warm to-warm-light'
-                } bg-clip-text text-transparent`}>{metric.value}</div>
+                <div className={`text-2xl font-bold mb-1 ${
+                  i === 0 ? 'text-secondary' :
+                  i === 1 ? 'text-accent' :
+                  i === 2 ? 'text-primary' :
+                  'text-warm'
+                }`}>{metric.value}</div>
                 <div className="text-sm text-muted-foreground">{metric.label}</div>
               </motion.div>
             ))}

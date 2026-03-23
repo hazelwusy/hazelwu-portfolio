@@ -88,7 +88,7 @@ export default function StruttCasePage() {
           className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance"
         >
           From Medical Device to Lifestyle Brand:{" "}
-          <span className="bg-gradient-to-r from-warm via-warm-light to-primary bg-clip-text text-transparent">
+          <span className="text-warm">
             Global GTM & User Empathy Mapping
           </span>
         </motion.h1>
@@ -230,12 +230,12 @@ export default function StruttCasePage() {
                 className="p-4 bg-card border border-border rounded-xl text-center hover:border-warm/30 transition-colors"
                 whileHover={{ y: -4 }}
               >
-                <div className={`text-2xl font-bold mb-1 bg-gradient-to-r ${
-                  i === 0 ? 'from-warm to-warm-light' :
-                  i === 1 ? 'from-primary to-secondary' :
-                  i === 2 ? 'from-secondary to-accent' :
-                  'from-accent to-primary'
-                } bg-clip-text text-transparent`}>{metric.value}</div>
+                <div className={`text-2xl font-bold mb-1 ${
+                  i === 0 ? 'text-warm' :
+                  i === 1 ? 'text-primary' :
+                  i === 2 ? 'text-secondary' :
+                  'text-accent'
+                }`}>{metric.value}</div>
                 <div className="text-sm text-muted-foreground">{metric.label}</div>
               </motion.div>
             ))}
