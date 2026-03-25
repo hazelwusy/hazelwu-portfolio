@@ -16,6 +16,11 @@ const researchExperiences = [
       "Developed system dynamics simulation models in Stella Architect to quantify crisis service utilization under varying resource constraints; scenario analyses projected a 23% reduction in average wait times.",
       "Contributed to county-level systems mapping research examining service fragmentation and capacity constraints in behavioral health crisis access.",
     ],
+    publications: [
+      'Wu, S., Simon, J., Fine, J., Dalack, G., Henry, N., Smith, R., Hong, V., Pinals, D., & Hassmiller Lich, K. "Mapping the Adult Mental Health Crisis System in a Midwestern County: Insights for Integration and Systems Strengthening." Psychiatric Services (under review).',
+      'Simon, J., Bandaru, V., Wu, S., et al. "Care Pathways and the Service Landscape in a County Youth Mental Health Crisis System: A Systems Mapping Study." Psychiatric Services (under review).',
+      'Wu, S., et al. "Exploring Feedback Dynamics in Acute Mental Health Crisis Care: A Qualitative Study of Stakeholder Mental Models." (Manuscript in preparation).',
+    ],
     gradient: "from-primary to-secondary",
     dotColor: "bg-primary",
     icon: Users,
@@ -34,6 +39,7 @@ const researchExperiences = [
           "Led a 5-person research team through systematic review and meta-analysis of Social Cognition and Interaction Training (SCIT) for psychosis populations.",
           "Executed quantitative evidence synthesis using Hedges' g effect sizes; conducted subgroup, moderator, meta-regression, and sensitivity analyses.",
         ],
+        publication: 'Wu, S., et al. "Exploring Feedback Dynamics in Acute Mental Health Crisis Care: A Qualitative Study of Stakeholder Mental Models." (Manuscript in preparation).',
       },
       {
         name: "Horyzons USA (PI: Dr. Kelsey Ludwig)",
@@ -47,21 +53,6 @@ const researchExperiences = [
     dotColor: "bg-warm",
     icon: FlaskConical,
     isCurrent: true,
-  },
-  {
-    title: "Research Assistant",
-    organization: "UNC School of Social Work",
-    pi: "PI: Dr. Jodi Constantine Brown",
-    period: "Aug 2022 – Aug 2023",
-    location: "Chapel Hill, NC",
-    description: [
-      "Co-authored a scoping review examining social work literature on grief and bereavement interventions; developed and applied systematic search protocols across PubMed and PsycINFO.",
-      "Conducted full-text screening and narrative synthesis of 180+ studies, contributing to manuscript draft and revisions.",
-    ],
-    gradient: "from-secondary to-accent",
-    dotColor: "bg-secondary",
-    icon: Beaker,
-    isCurrent: false,
   },
 ]
 
@@ -207,14 +198,29 @@ export default function ResearchExperiencePage() {
 
                     {/* Description or Projects */}
                     {exp.description ? (
-                      <ul className="space-y-2">
-                        {exp.description.map((item, i) => (
-                          <li key={i} className="text-sm text-muted-foreground leading-relaxed flex gap-2">
-                            <span className="text-primary mt-1.5 flex-shrink-0">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="space-y-4">
+                        <ul className="space-y-2">
+                          {exp.description.map((item, i) => (
+                            <li key={i} className="text-sm text-muted-foreground leading-relaxed flex gap-2">
+                              <span className="text-primary mt-1.5 flex-shrink-0">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        {exp.publications && (
+                          <div className="border-l-2 border-primary/30 pl-4 mt-4">
+                            <h4 className="text-sm font-semibold text-foreground mb-2">Publications</h4>
+                            <ul className="space-y-2">
+                              {exp.publications.map((pub, pubIndex) => (
+                                <li key={pubIndex} className="text-sm text-muted-foreground leading-relaxed flex gap-2 italic">
+                                  <span className="text-primary mt-1.5 flex-shrink-0 not-italic">•</span>
+                                  <span>{pub}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
                     ) : exp.projects ? (
                       <div className="space-y-4">
                         {exp.projects.map((project, pIndex) => (
@@ -229,6 +235,12 @@ export default function ResearchExperiencePage() {
                                   <span>{detail}</span>
                                 </li>
                               ))}
+                              {project.publication && (
+                                <li className="text-sm text-muted-foreground leading-relaxed flex gap-2 italic">
+                                  <span className="text-warm mt-1.5 flex-shrink-0 not-italic">•</span>
+                                  <span>{project.publication}</span>
+                                </li>
+                              )}
                             </ul>
                           </div>
                         ))}
