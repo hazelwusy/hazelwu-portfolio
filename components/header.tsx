@@ -13,13 +13,14 @@ interface HeaderProps {
 export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCasesOpen, setIsCasesOpen] = useState(false)
+  const [isExperienceOpen, setIsExperienceOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const casesRef = useRef<HTMLDivElement>(null)
+  const experienceRef = useRef<HTMLDivElement>(null)
 
   const navLinks = [
     { href: "#about", label: "About" },
     { href: "#skills", label: "Skills" },
-    { href: "#experience", label: "Experience" },
     { href: "#contact", label: "Contact" },
   ]
 
@@ -29,10 +30,18 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
     { href: "/cases/corewell", label: "Corewell" },
   ]
 
+  const experienceLinks = [
+    { href: "/#experience", label: "Professional" },
+    { href: "/experience/research", label: "Research / Project" },
+  ]
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (casesRef.current && !casesRef.current.contains(event.target as Node)) {
         setIsCasesOpen(false)
+      }
+      if (experienceRef.current && !experienceRef.current.contains(event.target as Node)) {
+        setIsExperienceOpen(false)
       }
     }
     
@@ -103,6 +112,58 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                   </span>
                 </motion.a>
               ))}
+
+              {/* Experience Dropdown */}
+              <div ref={experienceRef} className="relative">
+                <motion.button
+                  onClick={() => setIsExperienceOpen(!isExperienceOpen)}
+                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:rounded group"
+                  aria-expanded={isExperienceOpen}
+                  aria-haspopup="true"
+                  whileHover={{ y: -2 }}
+                >
+                  <span className="relative">
+                    Experience
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+                  </span>
+                  <motion.span
+                    animate={{ rotate: isExperienceOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronDown className="w-4 h-4" />
+                  </motion.span>
+                </motion.button>
+                
+                <AnimatePresence>
+                  {isExperienceOpen && (
+                    <motion.div 
+                      className="absolute top-full left-0 mt-2 w-48 bg-card/98 backdrop-blur-xl border border-border rounded-xl shadow-lg overflow-hidden"
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      {experienceLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className="block px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-primary/5 transition-colors border-b border-border/50 last:border-b-0 group"
+                          onClick={() => setIsExperienceOpen(false)}
+                        >
+                          <motion.span
+                            initial={{ x: 0 }}
+                            whileHover={{ x: 4 }}
+                            className="flex items-center gap-3"
+                          >
+                            <span className="w-2 h-2 rounded-full bg-warm group-hover:scale-125 transition-transform" />
+                            {link.label}
+                          </motion.span>
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               
               {/* Cases Dropdown */}
               <div ref={casesRef} className="relative">
@@ -156,20 +217,18 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                 </AnimatePresence>
               </div>
 
-              {navLinks.slice(2).map((link) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:rounded group"
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <span className="relative">
-                    {link.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
-                  </span>
-                </motion.a>
-              ))}
+              {/* Contact link */}
+              <motion.a
+                href="#contact"
+                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:rounded group"
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.2 }}
+              >
+                <span className="relative">
+                  Contact
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+                </span>
+              </motion.a>
             </nav>
 
             {/* Right Actions */}
@@ -263,13 +322,30 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                     {link.label}
                   </motion.a>
                 ))}
+
+                {/* Experience section in mobile */}
+                <div className="px-4 py-2 text-xs font-semibold text-warm uppercase tracking-wider flex items-center gap-2">
+                  <span className="w-6 h-px bg-warm/40" />
+                  Experience
+                </div>
+                {experienceLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="px-6 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-primary flex items-center gap-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-warm" />
+                    {link.label}
+                  </Link>
+                ))}
                 
                 {/* Cases section in mobile */}
                 <div className="px-4 py-2 text-xs font-semibold text-primary uppercase tracking-wider flex items-center gap-2">
                   <span className="w-6 h-px bg-primary/40" />
                   Cases
                 </div>
-                {caseLinks.map((link, index) => (
+                {caseLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
@@ -281,19 +357,17 @@ export default function Header({ isDark, toggleDarkMode }: HeaderProps) {
                   </Link>
                 ))}
                 
-                {navLinks.slice(2).map((link, index) => (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
-                    onClick={() => setIsMenuOpen(false)}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: (index + 5) * 0.05 }}
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
+                {/* Contact link */}
+                <motion.a
+                  href="#contact"
+                  className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+                  onClick={() => setIsMenuOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  Contact
+                </motion.a>
               </motion.nav>
             )}
           </AnimatePresence>
