@@ -9,7 +9,7 @@ export default function WorkProcess() {
     {
       title: "AI Workflow Automation & Knowledge Management",
       subtitle: "Well · Product Management",
-      summary: "Authored a PRD for an AI-powered internal workflow system and evaluated knowledge management platforms with a data-backed ROI model.",
+      summary: "Authored 5+ PRDs for AI-powered workflow systems and evaluated knowledge management platforms with a data-backed ROI model.",
       href: "/cases/well",
       icon: Sparkles,
       iconBg: "bg-primary",
