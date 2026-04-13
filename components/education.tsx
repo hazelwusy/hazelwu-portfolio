@@ -7,8 +7,9 @@ export default function Education() {
   const educationItems = [
     {
       institution: "UNC-Chapel Hill",
-      degree: "B.S. Health Policy & Management · B.S. Information Science · Minor: Data Science",
-      highlight: "Morehead-Cain Scholar (full-ride merit-based scholarship) · GPA: 3.9/4.0 · 2022 - 2026",
+      degree: "B.S. Health Policy & Management · B.S. Information Science · Minor: Data Science · 2022 - 2026",
+      highlight: "Morehead-Cain Scholar",
+      highlight2: "GPA: 3.9/4.0",
       courses: "Health Systems · Data Analytics in Healthcare · Health Care Finance · Data Science & Econometrics · Applied Data Analysis",
       icon: GraduationCap,
       isPrimary: true,
@@ -122,18 +123,31 @@ export default function Education() {
                       </div>
                     </div>
 
-                    {/* Highlight badge */}
+                    {/* Highlight badges */}
                     {item.highlight && (
-                      <motion.div 
-                        className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                      >
-                        <Award className="w-3.5 h-3.5 text-primary" />
-                        <span className="text-xs font-medium text-foreground">{item.highlight}</span>
-                      </motion.div>
+                      <div className="mb-4 flex flex-wrap gap-2">
+                        <motion.div 
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20"
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.3 }}
+                        >
+                          <Award className="w-3.5 h-3.5 text-primary" />
+                          <span className="text-xs font-medium text-foreground">{item.highlight}</span>
+                        </motion.div>
+                        {"highlight2" in item && item.highlight2 && (
+                          <motion.div 
+                            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.4 }}
+                          >
+                            <span className="text-xs font-medium text-foreground">{item.highlight2}</span>
+                          </motion.div>
+                        )}
+                      </div>
                     )}
 
                     {/* Courses */}
