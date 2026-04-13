@@ -18,10 +18,10 @@ const artifacts = [
 ]
 
 const metrics = [
-  { value: "2", label: "product PRDs shipped" },
+  { value: "5+", label: "product PRDs shipped" },
+  { value: "30+", label: "user stories written" },
   { value: "10–20x", label: "projected ROI" },
   { value: "15+", label: "inquiry workflows mapped" },
-  { value: "10%+", label: "routine inquiries automatable" },
 ]
 
 export default function WellCasePage() {
@@ -142,7 +142,7 @@ export default function WellCasePage() {
               <div className="absolute left-[-5px] top-1 w-2 h-2 rounded-full bg-primary" />
               <h3 className="text-lg font-semibold text-foreground mb-3">AI workflow architecture</h3>
               <p className="text-muted-foreground leading-relaxed">
-                {"I authored two product requirements documents: one for an internal Model Context Protocol (MCP) server — the infrastructure that would let AI agents safely interact with the platform — and one for an AI-powered help center that would surface contextual answers to members in real time. Both involved mapping complex conversational workflows: when a member asks about benefits vs. when they need clinical triage, what gets automated vs. what requires a human handoff. I defined strict AI-to-human escalation boundaries to protect patient safety, and coordinated across engineering, clinical, and QA teams. The core design insight was 'build once, deploy everywhere' — one MCP server powering multiple AI surfaces rather than building custom integrations for each."}
+                {"I authored 5+ product requirements documents spanning the platform's AI infrastructure — including specs for an internal MCP server, an AI-powered help center, and additional workflow modules — translating business and compliance requirements into 30+ user stories. This involved mapping complex conversational workflows: when a member asks about benefits vs. when they need clinical triage, what gets automated vs. what requires a human handoff. I defined strict AI-to-human escalation boundaries to protect patient safety, and coordinated across engineering, clinical, and QA teams. The core design insight was 'build once, deploy everywhere' — one MCP server powering multiple AI surfaces rather than building custom integrations for each."}
               </p>
             </div>
 
